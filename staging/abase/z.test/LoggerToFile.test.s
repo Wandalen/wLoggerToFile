@@ -16,7 +16,6 @@ if( typeof module !== 'undefined' )
 {
 
   require( '../object/printer/LoggerToFile.s' );
-  require( '../../../../wTools/staging/abase/component/StringTools.s' );
 
   try
   {

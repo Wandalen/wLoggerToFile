@@ -37,6 +37,7 @@
   "dependencies": {
     "wTools": "",
     "wCopyable": "",
+    "wLogger": "",
     "wColor": "",
     "wFiles": ""
   },

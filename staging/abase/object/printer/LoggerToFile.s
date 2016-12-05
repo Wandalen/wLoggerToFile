@@ -50,7 +50,7 @@ if( typeof module !== 'undefined' )
  *
  * @example
  * var path = __dirname +'/out.txt';
- * var l = new wLoggerToJstructure({ outputPath : path });
+ * var l = new wLoggerToFile({ outputPath : path });
  * var File = _.FileProvider.HardDrive();
  * l.log( '1' );
  * FilefileReadAct
@@ -62,7 +62,7 @@ if( typeof module !== 'undefined' )
  *
  * @example
  * var path = __dirname +'/out2.txt';
- * var l = new wLoggerToJstructure({ outputPath : path });
+ * var l = new wLoggerToFile({ outputPath : path });
  * vae l2 = new wLogger({ output : l });
  * var File = _.FileProvider.HardDrive();
  * l2.log( '1' );

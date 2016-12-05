@@ -53,8 +53,8 @@ bb
 ```
 ##### Example #3
 ```javascript
-/*Console as input for wLoggerToJstructure*/
-var l = new wLoggerToJstructure
+/*Console as input for wLoggerToFile*/
+var l = new wLoggerToFile
 ({
   outputPath : '/out3.txt'
 });

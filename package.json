@@ -1,7 +1,7 @@
 {
-  "name": "wLogger",
+  "name": "wLoggerToFile",
   "version": "0.3.10",
-  "description": "Module in JavaScript providing convenient, layered, cross-platform means for multilevel, colorful logging",
+  "description": "Module in JavaScript providing ",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [
     {
@@ -14,25 +14,25 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/abase/object/printer/printer/Logger.s",
+  "main": "staging/abase/object/printer/LoggerToFile.s",
   "files": [
     "staging/abase",
     "production"
   ],
   "directories": {
     "doc": "doc",
-    "main": "staging/abase/object/printer/printer/Logger.s"
+    "main": "staging/abase/object/printer/LoggerToFile.s"
   },
   "scripts": {
-    "test": "node ./staging/abase/z.test/All.backend.test.s",
+    "test": "node ./staging/abase/z.test/LoggerToFile.test.s",
     "make_doc": "./doc.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wandalen/wLogger.git"
+    "url": "https://github.com/Wandalen/wLoggerToFile.git"
   },
   "bugs": {
-    "url": "https://github.com/Wandalen/wLogger/issues"
+    "url": "https://github.com/Wandalen/wLoggerToFile/issues"
   },
   "dependencies": {
     "wTools": "",

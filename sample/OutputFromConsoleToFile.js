@@ -1,11 +1,10 @@
 
 if( typeof module !== 'undefined' )
-require( '../staging/abase/object/printer/printer/Logger.s' );
-//require( 'wLogger' );
+require( '../staging/abase/object/printer/LoggerToFile.s' );
 
 var _ = wTools;
-var l1 = new wLoggerToFile({ output : null });
-var l2 = new wLoggerToFile({ output : null, outputPath : 'output2.log' });
+var l1 = new wLoggerToFile();
+var l2 = new wLoggerToFile({ outputPath : 'output2.log' });
 
 l1.inputFrom( console );
 l2.inputFrom( console );

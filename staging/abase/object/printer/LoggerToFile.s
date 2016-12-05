@@ -6,9 +6,8 @@
 
 if( typeof module !== 'undefined' )
 {
-
   if( typeof wLogger === 'undefined' )
-  require( './Logger.s' );
+  require( 'wLogger' )
 
   if( !wTools.FileProvider  )
   try
@@ -77,8 +76,7 @@ if( typeof module !== 'undefined' )
  */
 
 var _ = wTools;
-//var Parent = wPrinterMid;
-var Parent = wLogger;
+var Parent = wPrinterBase;
 var Self = function wLoggerToFile()
 {
   if( !( this instanceof Self ) )

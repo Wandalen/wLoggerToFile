@@ -1,16 +1,18 @@
-
-
 if( typeof module !== 'undefined' )
-require( 'wLogger' );
+require( '../staging/abase/object/printer/LoggerToFile.s' );
 
 var _ = wTools;
+var logger = new wLoggerToFile();
 
-var logger = new wLogger();
+console.log( 'output',logger.output );
+console.log( 'outputPath',logger.outputPath );
 
-logger.logUp( 'up' );
-logger.log( 'log' );
-logger.log( 'log\nlog' );
-logger.log( 'log','a','b' );
-logger.log( 'log\nlog','a','b' );
-logger.log( 'log\nlog','a\n','b\n' );
-logger.logDown( 'down' );
+logger._dprefix = '-';
+logger.log( 'a1\nb1' );
+logger.up( 2 );
+logger.log( 'a2\nb2' );
+
+// a1
+// b1
+// a2
+// b2

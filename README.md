@@ -26,6 +26,7 @@ Chaining:
 *  Remove object from output list [outputToUnchain]()
 *  Add current logger to target's output list [inputFrom]()
 *  Remove current logger from target's output list [inputFromUnchain]()
+
 ##### Example #1
 ```javascript
 /*Logging to specified file*/

@@ -6,9 +6,8 @@
 
 if( typeof module !== 'undefined' )
 {
-
   if( typeof wLogger === 'undefined' )
-  require( './Logger.s' );
+  require( 'wLogger' )
 
   if( !wTools.FileProvider  )
   try
@@ -51,7 +50,7 @@ if( typeof module !== 'undefined' )
  *
  * @example
  * var path = __dirname +'/out.txt';
- * var l = new wLoggerToJstructure({ outputPath : path });
+ * var l = new wLoggerToFile({ outputPath : path });
  * var File = _.FileProvider.HardDrive();
  * l.log( '1' );
  * FilefileReadAct
@@ -63,7 +62,7 @@ if( typeof module !== 'undefined' )
  *
  * @example
  * var path = __dirname +'/out2.txt';
- * var l = new wLoggerToJstructure({ outputPath : path });
+ * var l = new wLoggerToFile({ outputPath : path });
  * vae l2 = new wLogger({ output : l });
  * var File = _.FileProvider.HardDrive();
  * l2.log( '1' );
@@ -77,8 +76,7 @@ if( typeof module !== 'undefined' )
  */
 
 var _ = wTools;
-//var Parent = wPrinterMid;
-var Parent = wLogger;
+var Parent = wPrinterBase;
 var Self = function wLoggerToFile()
 {
   if( !( this instanceof Self ) )

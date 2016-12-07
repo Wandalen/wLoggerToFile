@@ -15,10 +15,7 @@ node ./staging/abase/z.test/LoggerToFile.test.s
 if( typeof module !== 'undefined' )
 {
 
-  require( 'wTools' );
-  require( '../object/printer/printer/Logger.s' );
-  require( '../../../../wTools/staging/abase/component/StringTools.s' );
-  require( '../object/printer/printer/LoggerToFile.s' );
+  require( '../object/printer/LoggerToFile.s' );
 
   try
   {
@@ -28,7 +25,6 @@ if( typeof module !== 'undefined' )
   {
     require ( 'wTesting' );
   }
-
 }
 
 var _ = wTools;
@@ -107,7 +103,7 @@ var chaining = function( test )
   var got = [];
   var loggerToFile = new wLoggerToFile({ outputPath : __dirname +'/tmp/out.txt' });
   var l = new wLogger({ output : loggerToFile });
-  var l2 = new wLogger({ onWrite : _onWrite });
+  var l2 = new wLogger({ output : null, onWrite : _onWrite });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
   var expected = [ 'msg' ]
@@ -145,7 +141,7 @@ var chaining = function( test )
   l.outputTo( loggerToFile, { combining : 'rewrite', leveling : 'delta' } );
   l.up( 2 );
   var got = loggerToFile.level;
-  var expected = 0;
+  var expected = 2;
   test.identical( got, expected );
 }
 

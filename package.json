@@ -1,6 +1,6 @@
 {
   "name": "wLoggerToFile",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Module in JavaScript providing convenient, layered, logging into file.",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [

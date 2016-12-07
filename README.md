@@ -1,7 +1,7 @@
 
 ## wLoggerToFile
 Module in JavaScript providing convenient, layered, logging into file.
-Logger that writes messages( incoming & outgoing ) to file specified by path( outputPath ).
+Logger writes messages( incoming & outgoing ) to file specified by path( outputPath ).
 Writes each message to the end of file, creates new file( outputPath ) if it doesn't exists.
 Then transfers message to the next output(s) object in the chain if any exists.
 
@@ -60,10 +60,4 @@ l.inputFrom( console );
 console.log( 'aa\nbb' );
 /* save console output into file, message by message */
 ```
-
-
-
-
-
-
 

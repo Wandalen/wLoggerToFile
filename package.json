@@ -1,6 +1,6 @@
 {
-  "name": "wLoggerToFile",
-  "version": "0.3.10",
+  "name": "wloggertofile",
+  "version": "0.4.1",
   "description": "Module in JavaScript providing convenient, layered, logging into file.",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [
@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "wTools": "",
-    "wCopyable": "",
     "wLogger": "",
     "wFiles": ""
   },
@@ -45,6 +44,8 @@
   },
   "keywords": [
     "wTools",
+    "log to file",
+    "save console output into file",
     "logger",
     "logging",
     "log",

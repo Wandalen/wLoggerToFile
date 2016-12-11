@@ -145,6 +145,37 @@ var chaining = function( test )
   test.identical( got, expected );
 }
 
+//
+
+var inputFrom = function( test )
+{
+  test.description = 'input from console';
+  var path1 = __dirname +'/tmp/out.txt';
+  _deleteFile( path1 );
+  var loggerToFile = new wLoggerToFile({ outputPath : path1 });
+  loggerToFile.inputFrom( console );
+  console.log( 'something' )
+  loggerToFile.inputFromUnchain( console );
+  var got = _readFromFile( path1 );
+  var expected = 'something\n';
+  test.identical( got, expected );
+
+  test.description = 'input from console twice';
+  var path1 = __dirname +'/tmp/out.txt';
+  var path2 = __dirname +'/tmp/out2.txt';
+  _deleteFile( path1 );
+  _deleteFile( path2 );
+  var loggerToFile1 = new wLoggerToFile({ outputPath : path1 });
+  var loggerToFile2 = new wLoggerToFile({ outputPath : path2 });
+  loggerToFile1.inputFrom( console );
+  loggerToFile2.inputFrom( console );
+  console.log( 'something' )
+  loggerToFile1.inputFromUnchain( console );
+  loggerToFile2.inputFromUnchain( console );
+  var got = [ _readFromFile( path1 ), _readFromFile( path2 ) ];
+  var expected = [ 'something\n', 'something\n' ];
+  test.identical( got, expected );
+}
 var Proto =
 {
 
@@ -154,7 +185,8 @@ var Proto =
   {
 
    toFile : toFile,
-   chaining : chaining
+   chaining : chaining,
+   inputFrom : inputFrom
 
   },
 

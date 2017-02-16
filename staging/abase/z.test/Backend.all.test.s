@@ -15,18 +15,13 @@ node ./staging/abase/z.test/All.backend.test.s
 if( typeof module !== 'undefined' )
 {
 
-  require( 'wTools' );
+  require( '../printer/LoggerToFile.s' );
 
-  try
-  {
-    require( '../../../../wTesting/staging/abase/object/Testing.debug.s' );
-  }
-  catch ( err )
-  {
-    require ( 'wTesting' );
-  }
+  var _ = wTools;
 
-  require( './LoggerToFile.test.s' );
+  _.include( 'wTesting' );
+
+  require( './LoggerToJstructure.test.s' );
 
 }
 

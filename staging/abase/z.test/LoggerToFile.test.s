@@ -15,16 +15,10 @@ node ./staging/abase/z.test/LoggerToFile.test.s
 if( typeof module !== 'undefined' )
 {
 
-  require( '../object/printer/LoggerToFile.s' );
+  require( '../printer/LoggerToFile.s' );
 
-  try
-  {
-    require( '../../../../wTesting/staging/abase/object/Testing.debug.s' );
-  }
-  catch ( err )
-  {
-    require ( 'wTesting' );
-  }
+  _.include( 'wTesting' );
+
 }
 
 var _ = wTools;

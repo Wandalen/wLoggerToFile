@@ -1,4 +1,4 @@
-(function _LoggerToFile_s_() {
+(function _LoggerToFile_ss_() {
 
 'use strict';
 
@@ -6,18 +6,20 @@
 
 if( typeof module !== 'undefined' )
 {
-  if( typeof wLogger === 'undefined' )
-  require( 'wLogger' )
-
-  if( !wTools.FileProvider  )
+  if( typeof wBase === 'undefined' )
   try
   {
-    require( '../../../../amid/file/Files.ss' );
+    require( '../wTools.s' );
   }
   catch( err )
   {
-    require( 'wFiles' );
+    require( 'wTools' );
   }
+
+  var _ = wTools;
+
+  _.include( 'wLogger' );
+  _.include( 'wFiles' );
 
 }
 
@@ -38,10 +40,10 @@ if( typeof module !== 'undefined' )
  * </ul>
  * Chaining:
  * <ul>
- *  <li>Add object to output list [outputTo]{@link wPrinterBase.outputTo}
- *  <li>Remove object from output list [outputToUnchain]{@link wPrinterBase.outputToUnchain}
- *  <li>Add current logger to target's output list [inputFrom]{@link wPrinterBase.inputFrom}
- *  <li>Remove current logger from target's output list [inputFromUnchain]{@link wPrinterBase.inputFromUnchain}
+ *  <li>Add object to output list [outputTo]{@link wPrinterMid.outputTo}
+ *  <li>Remove object from output list [outputToUnchain]{@link wPrinterMid.outputToUnchain}
+ *  <li>Add current logger to target's output list [inputFrom]{@link wPrinterMid.inputFrom}
+ *  <li>Remove current logger from target's output list [inputFromUnchain]{@link wPrinterMid.inputFromUnchain}
  * </ul>
  * @class wLoggerToFile
  * @param { Object } o - Options.
@@ -76,8 +78,8 @@ if( typeof module !== 'undefined' )
  */
 
 var _ = wTools;
-var Parent = wPrinterBase;
-var Self = function wLoggerToFile()
+var Parent = wPrinterTop;
+var Self = function wLoggerToFile( o )
 {
   if( !( this instanceof Self ) )
   if( o instanceof Self )
@@ -89,7 +91,7 @@ var Self = function wLoggerToFile()
 
 //
 
-var init = function( o )
+function init( o )
 {
   var self = this;
 
@@ -105,7 +107,7 @@ var init = function( o )
 
 //
 
-var _init_static = function( name )
+function __initChainingMixinWrite( name )
 {
   var proto = this;
   var nameAct = name + 'Act';
@@ -116,7 +118,7 @@ var _init_static = function( name )
 
   /* */
 
-  var write = function()
+  function write()
   {
     this._writeToFile.apply( this, arguments );
     if( this.output )
@@ -174,7 +176,7 @@ var Proto =
 
   init : init,
 
-  _init_static : _init_static,
+  __initChainingMixinWrite : __initChainingMixinWrite,
 
   _writeToFile : _writeToFile,
 
@@ -196,7 +198,7 @@ _.protoMake
   extend : Proto,
 });
 
-Self.prototype.init_static();
+Self.prototype._initChainingMixin();
 
 // --
 // export

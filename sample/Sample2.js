@@ -1,5 +1,12 @@
 if( typeof module !== 'undefined' )
-require( '../staging/abase/object/printer/LoggerToFile.s' );
+try
+{
+  require( 'wloggertofile' );
+}
+catch( err )
+{
+  require( '../staging/abase/printer/printer/LoggerToFile.s' );
+}
 
 var _ = wTools;
 

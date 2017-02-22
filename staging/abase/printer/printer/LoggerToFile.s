@@ -6,6 +6,7 @@
 
 if( typeof module !== 'undefined' )
 {
+
   if( typeof wBase === 'undefined' )
   try
   {
@@ -176,7 +177,7 @@ var Proto =
 
   init : init,
 
-  __initChainingMixinWrite : __initChainingMixinWrite,
+  // __initChainingMixinWrite : __initChainingMixinWrite,
 
   _writeToFile : _writeToFile,
 
@@ -198,7 +199,7 @@ _.protoMake
   extend : Proto,
 });
 
-Self.prototype._initChainingMixin();
+// Self.prototype._initChainingMixin();
 
 // --
 // export

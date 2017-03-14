@@ -42,9 +42,9 @@ if( typeof module !== 'undefined' )
  * Chaining:
  * <ul>
  *  <li>Add object to output list [outputTo]{@link wPrinterMid.outputTo}
- *  <li>Remove object from output list [outputToUnchain]{@link wPrinterMid.outputToUnchain}
+ *  <li>Remove object from output list [outputUnchain]{@link wPrinterMid.outputUnchain}
  *  <li>Add current logger to target's output list [inputFrom]{@link wPrinterMid.inputFrom}
- *  <li>Remove current logger from target's output list [inputFromUnchain]{@link wPrinterMid.inputFromUnchain}
+ *  <li>Remove current logger from target's output list [inputUnchain]{@link wPrinterMid.inputUnchain}
  * </ul>
  * @class wLoggerToFile
  * @param { Object } o - Options.
@@ -99,7 +99,7 @@ function init( o )
   Parent.prototype.init.call( self,o );
 
   if( typeof __dirname !== 'undefined' )
-  self.outputPath = _.pathJoin( _.pathBaseDir(),self.outputPath );
+  self.outputPath = _.pathJoin( _.pathEffectiveMainDir(),self.outputPath );
 
   if( !self.fileProvider )
   self.fileProvider = _.FileProvider.HardDrive();

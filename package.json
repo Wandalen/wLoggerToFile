@@ -36,8 +36,9 @@
   },
   "dependencies": {
     "wTools": "",
+    "wFiles": "",
     "wLogger": "",
-    "wFiles": ""
+    "wloggertofile": ""
   },
   "devDependencies": {
     "wTesting": ""

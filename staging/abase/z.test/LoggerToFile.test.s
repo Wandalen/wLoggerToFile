@@ -149,7 +149,7 @@ var inputFrom = function( test )
   var loggerToFile = new wLoggerToFile({ outputPath : path1 });
   loggerToFile.inputFrom( console );
   console.log( 'something' )
-  loggerToFile.inputFromUnchain( console );
+  loggerToFile.inputUnchain( console );
   var got = _readFromFile( path1 );
   var expected = 'something\n';
   test.identical( got, expected );
@@ -164,8 +164,8 @@ var inputFrom = function( test )
   loggerToFile1.inputFrom( console );
   loggerToFile2.inputFrom( console );
   console.log( 'something' )
-  loggerToFile1.inputFromUnchain( console );
-  loggerToFile2.inputFromUnchain( console );
+  loggerToFile1.inputUnchain( console );
+  loggerToFile2.inputUnchain( console );
   var got = [ _readFromFile( path1 ), _readFromFile( path2 ) ];
   var expected = [ 'something\n', 'something\n' ];
   test.identical( got, expected );

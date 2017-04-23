@@ -1,6 +1,7 @@
 {
   "name": "wloggertofile",
   "version": "0.4.4",
+  "engine" : "node >= 5.0.0",
   "description": "Module in JavaScript providing convenient, layered, logging into file.",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [
@@ -24,7 +25,7 @@
     "main": "staging/abase/printer/LoggerToFile.s"
   },
   "scripts": {
-    "test": "node ./staging/abase/printer/z.test/Backend.all.test.s",
+    "test": "wtest staging",
     "make_doc": "./doc.sh"
   },
   "repository": {

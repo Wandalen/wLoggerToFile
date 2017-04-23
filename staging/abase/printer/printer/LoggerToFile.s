@@ -58,7 +58,7 @@ if( typeof module !== 'undefined' )
  * l.log( '1' );
  * FilefileReadAct
  * ({
- *  pathFile : path,
+ *  filePath : path,
  *  sync : 1
  * });
  * //returns '1'
@@ -71,7 +71,7 @@ if( typeof module !== 'undefined' )
  * l2.log( '1' );
  * FilefileReadAct
  * ({
- *  pathFile : path,
+ *  filePath : path,
  *  sync : 1
  * });
  * //returns '1'
@@ -131,7 +131,7 @@ function __initChainingMixinWrite( name )
 
 //
 
-var _writeToFile = function ( )
+function _writeToFile()
 {
   var self = this;
 
@@ -142,7 +142,7 @@ var _writeToFile = function ( )
 
   self.fileProvider.fileWriteAct
   ({
-    pathFile :  self.outputPath,
+    filePath :  self.outputPath,
     data : data,
     writeMode : 'append',
     sync : 1

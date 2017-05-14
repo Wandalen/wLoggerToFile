@@ -1,4 +1,4 @@
-(function _LoggerToFile_ss_() {
+(function _PrinterToFile_ss_() {
 
 'use strict';
 
@@ -7,10 +7,10 @@
 if( typeof module !== 'undefined' )
 {
 
-  if( typeof wBase === 'undefined' )
+  // if( typeof wBase === 'undefined' )
   try
   {
-    require( '../wTools.s' );
+    require( '../../wTools.s' );
   }
   catch( err )
   {
@@ -46,14 +46,14 @@ if( typeof module !== 'undefined' )
  *  <li>Add current logger to target's output list [inputFrom]{@link wPrinterMid.inputFrom}
  *  <li>Remove current logger from target's output list [inputUnchain]{@link wPrinterMid.inputUnchain}
  * </ul>
- * @class wLoggerToFile
+ * @class wPrinterToFile
  * @param { Object } o - Options.
  * @param { Object } [ o.output=null ] - Specifies single output object for current logger.
  * @param { Object } [ o.outputPath=null ] - Specifies file path for output.
  *
  * @example
  * var path = __dirname +'/out.txt';
- * var l = new wLoggerToFile({ outputPath : path });
+ * var l = new wPrinterToFile({ outputPath : path });
  * var File = _.FileProvider.HardDrive();
  * l.log( '1' );
  * FilefileReadAct
@@ -65,7 +65,7 @@ if( typeof module !== 'undefined' )
  *
  * @example
  * var path = __dirname +'/out2.txt';
- * var l = new wLoggerToFile({ outputPath : path });
+ * var l = new wPrinterToFile({ outputPath : path });
  * vae l2 = new wLogger({ output : l });
  * var File = _.FileProvider.HardDrive();
  * l2.log( '1' );
@@ -80,7 +80,7 @@ if( typeof module !== 'undefined' )
 
 var _ = wTools;
 var Parent = wPrinterTop;
-var Self = function wLoggerToFile( o )
+var Self = function wPrinterToFile( o )
 {
   if( !( this instanceof Self ) )
   if( o instanceof Self )
@@ -89,6 +89,8 @@ var Self = function wLoggerToFile( o )
   return new( _.routineJoin( Self, Self, arguments ) );
   return Self.prototype.init.apply( this,arguments );
 }
+
+Self.nameShort = 'PrinterToFile';
 
 //
 
@@ -136,7 +138,7 @@ function _writeToFile()
   var self = this;
 
   _.assert( arguments.length );
-  _.assert( _.strIs( self.outputPath ),'outputPath is not defined for LoggerToFile' );
+  _.assert( _.strIs( self.outputPath ),'outputPath is not defined for PrinterToFile' );
 
   var data = _.strConcat.apply( { },arguments ) + '\n';
 
@@ -194,7 +196,7 @@ var Proto =
 
 _.protoMake
 ({
-  constructor : Self,
+  cls : Self,
   parent : Parent,
   extend : Proto,
 });
@@ -210,6 +212,6 @@ if( typeof module !== 'undefined' && module !== null )
   module[ 'exports' ] = Self;
 }
 
-_global_[ Self.name ] = wTools.LoggerToFile = Self;
+_global_[ Self.name ] = wTools[ Self.nameShort ] = Self;
 
 })();

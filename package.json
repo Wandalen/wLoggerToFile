@@ -1,6 +1,6 @@
 {
   "name": "wloggertofile",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "engine": "node >= 6.0.0",
   "description": "Module in JavaScript providing convenient, layered, logging into file.",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",

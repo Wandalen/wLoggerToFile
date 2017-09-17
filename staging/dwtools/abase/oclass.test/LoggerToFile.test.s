@@ -2,16 +2,6 @@
 
 'use strict';
 
-/*
-
-to run this test
-from the project directory run
-
-npm install
-node ./staging/abase/z.test/LoggerToFile.test.s
-
-*/
-
 if( typeof module !== 'undefined' )
 {
 
@@ -170,6 +160,9 @@ var inputFrom = function( test )
   var expected = [ 'something\n', 'something\n' ];
   test.identical( got, expected );
 }
+
+//
+
 var Proto =
 {
 

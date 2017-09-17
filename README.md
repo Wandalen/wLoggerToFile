@@ -1,9 +1,7 @@
 
-## wLoggerToFile
-Module in JavaScript providing convenient, layered, logging into file.
-Logger writes messages( incoming & outgoing ) to file specified by path( outputPath ).
-Writes each message to the end of file, creates new file( outputPath ) if it doesn't exists.
-Then transfers message to the next output(s) object in the chain if any exists.
+# wLoggerToFile [![Build Status](https://travis-ci.org/Wandalen/wLoggerToFile.svg?branch=master)](https://travis-ci.org/Wandalen/wLoggerToFile)
+
+The module in JavaScript provides convenient, layered, logging into a file. Logger writes messages( incoming & outgoing ) to file specified by path( outputPath ). Writes each message to the end of a file, creates a new file( outputPath ) if it doesn't exist. Then transfers message to the next output(s) object in the chain if any exists.
 
 ## Installation
 ```terminal
@@ -64,10 +62,3 @@ l.inputFrom( console );
 console.log( 'aa\nbb' );
 /* save console output into file, message by message */
 ```
-
-
-
-
-
-
-

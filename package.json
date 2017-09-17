@@ -2,7 +2,7 @@
   "name": "wloggertofile",
   "version": "0.4.7",
   "engine": "node >= 6.0.0",
-  "description": "Module in JavaScript providing convenient, layered, logging into file.",
+  "description": "Logging into a file.",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "contributors": [
     {
@@ -15,15 +15,11 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/abase/printer/LoggerToFile.s",
+  "main": "staging/dwtools/abase/oclass/printer/LoggerToFile.s",
   "files": [
-    "staging/abase",
+    "staging/dwtools/abase/oclass",
     "production"
   ],
-  "directories": {
-    "doc": "doc",
-    "main": "staging/abase/printer/LoggerToFile.s"
-  },
   "scripts": {
     "test": "wtest staging",
     "make_doc": "./doc.sh"
@@ -42,7 +38,8 @@
     "wloggertofile": ""
   },
   "devDependencies": {
-    "wTesting": ""
+    "wTesting": "",
+    "wloggertofile": "."
   },
   "keywords": [
     "wTools",

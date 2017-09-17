@@ -1,6 +1,6 @@
 
 if( typeof module !== 'undefined' )
-require( '../staging/abase/printer/LoggerToFile.s' );
+require( '../staging/dwtools/abase/oclass/printer/LoggerToFile.s' );
 
 var _ = wTools;
 var l1 = new wLoggerToFile();

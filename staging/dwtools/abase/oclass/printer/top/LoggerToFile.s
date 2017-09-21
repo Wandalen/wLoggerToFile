@@ -110,47 +110,86 @@ function init( o )
 
 //
 
-function __initChainingMixinWrite( name )
-{
-  var proto = this;
-  var nameAct = name + 'Act';
+// function __initChainingMixinWrite( name )
+// {
+//   var proto = this;
+//   var nameAct = name + 'Act';
 
-  _.assert( Object.hasOwnProperty.call( proto,'constructor' ) )
-  _.assert( arguments.length === 1 );
-  _.assert( _.strIs( name ) );
+//   _.assert( Object.hasOwnProperty.call( proto,'constructor' ) )
+//   _.assert( arguments.length === 1 );
+//   _.assert( _.strIs( name ) );
 
-  /* */
+//   /* */
 
-  function write()
-  {
-    this._writeToFile.apply( this, arguments );
-    if( this.output )
-    return this[ nameAct ].apply( this,arguments );
-  }
+//   function write()
+//   {
+//     this._writeToFile.apply( this, arguments );
+//     if( this.output )
+//     return this[ nameAct ].apply( this,arguments );
+//   }
 
-  proto[ name ] = write;
-}
+//   proto[ name ] = write;
+// }
 
-//
-
-function _writeToFile()
+function write()
 {
   var self = this;
 
-  _.assert( arguments.length );
-  _.assert( _.strIs( self.outputPath ),'outputPath is not defined for PrinterToFile' );
+  debugger;
+  var o = wPrinterBase.prototype.write.apply( self,arguments );
 
-  var data = _.strConcat.apply( { },arguments ) + '\n';
+  if( !o )
+  return;
+
+  _.assert( o );
+  _.assert( _.arrayIs( o.output ) );
+  _.assert( o.output.length === 1 );
+
+  var terminal = o.output[ 0 ];
+  if( self.usingTags && _.mapKeys( self.attributes ).length )
+  {
+
+    var text = terminal;
+    terminal = Object.create( null );
+    terminal.text = text;
+
+    for( var t in self.attributes )
+    {
+      terminal[ t ] = self.attributes[ t ];
+    }
+
+  }
 
   self.fileProvider.fileWriteAct
   ({
     filePath :  self.outputPath,
-    data : data,
+    data : terminal + '\n',
     writeMode : 'append',
     sync : 1
   });
 
+  return o;
 }
+
+//
+
+// function _writeToFile()
+// {
+//   var self = this;
+//   _.assert( arguments.length );
+//   _.assert( _.strIs( self.outputPath ),'outputPath is not defined for PrinterToFile' );
+
+//   var data = _.strConcat.apply( { },arguments ) + '\n';
+
+//   self.fileProvider.fileWriteAct
+//   ({
+//     filePath :  self.outputPath,
+//     data : data,
+//     writeMode : 'append',
+//     sync : 1
+//   });
+
+// }
 
 // --
 // relationships
@@ -181,7 +220,8 @@ var Proto =
 
   // __initChainingMixinWrite : __initChainingMixinWrite,
 
-  _writeToFile : _writeToFile,
+  write : write,
+  // _writeToFile : _writeToFile,
 
   // relationships
 

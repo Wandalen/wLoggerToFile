@@ -17,25 +17,10 @@ var _ = wTools;
 var Parent = wTools.Testing;
 var Self = {};
 
-var testRootDirectory,filePath;
+var testRootDirectory = _.dirTempMake( _.pathJoin( __dirname, '../..' ) )
+var filePath = _.pathJoin( testRootDirectory, 'out.txt' );
 
-function makeTestDir()
-{
-  testRootDirectory = _.dirTempFor
-  ({
-    packageName : Self.name,
-    packagePath : _.pathResolve( _.pathRealMainDir(), '../../tmp.tmp' )
-  });
-
-  testRootDirectory = _.fileProvider.pathNativize( testRootDirectory );
-
-  if( _.fileProvider.fileStat( testRootDirectory ) )
-  _.fileProvider.fileDelete( testRootDirectory );
-
-  _.fileProvider.directoryMake( testRootDirectory );
-
-  filePath = _.pathJoin( testRootDirectory, 'out.txt' );
-}
+//
 
 function cleanTestDir()
 {
@@ -170,7 +155,6 @@ var Proto =
 
   name : 'LoggerToFile',
 
-  onSuiteBegin : makeTestDir,
   onSuiteEnd : cleanTestDir,
 
   tests :

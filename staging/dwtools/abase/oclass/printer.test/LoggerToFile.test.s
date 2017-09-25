@@ -5,7 +5,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../oclass/printer/top/LoggerToFile.s' );
+  require( '../printer/top/LoggerToFile.s' );
 
   var _ = wTools;
 
@@ -17,7 +17,7 @@ var _ = wTools;
 var Parent = wTools.Testing;
 var Self = {};
 
-var testRootDirectory = _.dirTempMake( _.pathJoin( __dirname, '../..' ) )
+var testRootDirectory = _.dirTempMake( _.pathJoin( __dirname, '../../..' ) )
 var filePath = _.pathJoin( testRootDirectory, 'out.txt' );
 
 //

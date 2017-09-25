@@ -19,8 +19,11 @@ var Self = {};
 
 var testRootDirectory,filePath;
 
+//
+
 function makeTestDir()
 {
+
   testRootDirectory = _.dirTempFor
   ({
     packageName : Self.name,
@@ -36,6 +39,8 @@ function makeTestDir()
 
   filePath = _.pathJoin( testRootDirectory, 'out.txt' );
 }
+
+//
 
 function cleanTestDir()
 {

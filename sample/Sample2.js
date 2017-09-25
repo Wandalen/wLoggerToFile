@@ -1,12 +1,5 @@
 if( typeof module !== 'undefined' )
-try
-{
-  require( 'wloggertofile' );
-}
-catch( err )
-{
-  require( '../staging/dwtools/abase/oclass/printer/top/LoggerToFile.s' );
-}
+require( 'wloggertofile' );
 
 var _ = wTools;
 

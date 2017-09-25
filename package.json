@@ -15,7 +15,7 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/oclass/printer/LoggerToFile.s",
+  "main": "staging/dwtools/abase/oclass/printer/top/LoggerToFile.s",
   "files": [
     "staging/dwtools/abase/oclass",
     "production"
@@ -34,8 +34,7 @@
   "dependencies": {
     "wTools": "",
     "wFiles": "",
-    "wLogger": "",
-    "wloggertofile": ""
+    "wLogger": ""
   },
   "devDependencies": {
     "wTesting": "",

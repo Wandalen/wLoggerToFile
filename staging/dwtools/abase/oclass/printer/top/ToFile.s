@@ -1,4 +1,4 @@
-(function _PrinterToFile_ss_() {
+(function _ToFile_ss_() {
 
 'use strict';
 
@@ -7,7 +7,6 @@
 if( typeof module !== 'undefined' )
 {
 
-  // if( typeof wBase === 'undefined' )
   try
   {
     require( '../../../../Base.s' );
@@ -248,10 +247,7 @@ _.classMake
 // --
 
 if( typeof module !== 'undefined' && module !== null )
-{
-  module[ 'exports' ] = Self;
-}
-
+module[ 'exports' ] = Self;
 _global_[ Self.name ] = wTools[ Self.nameShort ] = Self;
 
 })();

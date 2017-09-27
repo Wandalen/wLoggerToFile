@@ -58,7 +58,7 @@ var toFile = function( test )
 
 var chaining = function( test )
 {
-  var _onWrite = function( args ) { got.push( args[ 0 ] ) };
+  var _onWrite = function( o ) { got.push( o.output[ 0 ] ) };
 
   test.description = 'case1: Logger->LoggerToFile';
   _.fileProvider.fileDelete( filePath );
@@ -81,39 +81,39 @@ var chaining = function( test )
   test.identical( got, expected );
 
   test.description = 'case3: LoggerToFile->LoggerToFile';
-  var path1 = filePath;
+
   var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
-  _.fileProvider.fileDelete( path1 );
+  _.fileProvider.fileDelete( filePath );
   _.fileProvider.fileDelete( path2 );
-  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
   loggerToFile.outputTo( loggerToFile2, { combining : 'rewrite' } );
   loggerToFile.log( 'msg' );
-  var got = [ _.fileProvider.fileRead( path1 ), _.fileProvider.fileRead( path2 ) ];
+  var got = [ _.fileProvider.fileRead( filePath ), _.fileProvider.fileRead( path2 ) ];
   var expected = [ 'msg\n', 'msg\n' ]
   test.identical( got, expected );
 
   test.description = 'case4: * -> LoggerToFile';
-  var path1 = filePath;
-  _.fileProvider.fileDelete( path1 );
-  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
+
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l1 = new wLogger({ output : loggerToFile });
   var l2 = new wLogger({ output : loggerToFile });
   l1.log( '1' );
   l2.log( '2' );
-  var got = _.fileProvider.fileRead( path1 );
+  var got = _.fileProvider.fileRead( filePath );
   var expected = '1\n2\n'
   test.identical( got, expected );
 
-  test.description = 'case5: leveling delta';
-  var path1 = filePath;
-  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
-  var l1 = new wLogger();
-  l.outputTo( loggerToFile, { combining : 'rewrite', leveling : 'delta' } );
-  l.up( 2 );
-  var got = loggerToFile.level;
-  var expected = 2;
-  test.identical( got, expected );
+  // test.description = 'case5: leveling delta';
+  //
+  // var loggerToFile = new wPrinterToFile({ outputPath : filePath });
+  // var l1 = new wLogger();
+  // l.outputTo( loggerToFile, { combining : 'rewrite', leveling : 'delta' } );
+  // l.up( 2 );
+  // var got = loggerToFile.level;
+  // var expected = 2;
+  // test.identical( got, expected );
 }
 
 //
@@ -121,29 +121,29 @@ var chaining = function( test )
 var inputFrom = function( test )
 {
   test.description = 'input from console';
-  var path1 = filePath;
-  _.fileProvider.fileDelete( path1 );
-  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
+
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   loggerToFile.inputFrom( console );
   console.log( 'something' )
   loggerToFile.inputUnchain( console );
-  var got = _.fileProvider.fileRead( path1 );
+  var got = _.fileProvider.fileRead( filePath );
   var expected = 'something\n';
   test.identical( got, expected );
 
   test.description = 'input from console twice';
-  var path1 = filePath;
+
   var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
-  _.fileProvider.fileDelete( path1 );
+  _.fileProvider.fileDelete( filePath );
   _.fileProvider.fileDelete( path2 );
-  var loggerToFile1 = new wPrinterToFile({ outputPath : path1 });
+  var loggerToFile1 = new wPrinterToFile({ outputPath : filePath });
   var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
   loggerToFile1.inputFrom( console );
   loggerToFile2.inputFrom( console );
   console.log( 'something' )
   loggerToFile1.inputUnchain( console );
   loggerToFile2.inputUnchain( console );
-  var got = [ _.fileProvider.fileRead( path1 ), _.fileProvider.fileRead( path2 ) ];
+  var got = [ _.fileProvider.fileRead( filePath ), _.fileProvider.fileRead( path2 ) ];
   var expected = [ 'something\n', 'something\n' ];
   test.identical( got, expected );
 }
@@ -156,6 +156,7 @@ var Proto =
   name : 'LoggerToFile',
 
   onSuiteEnd : cleanTestDir,
+  silencing : 0,
 
   tests :
   {
@@ -174,6 +175,7 @@ var Proto =
 
 _.mapExtend( Self,Proto );
 Self = wTestSuite( Self );
+
 if( typeof module !== 'undefined' && !module.parent )
 _.Tester.test( Self.name );
 

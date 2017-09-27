@@ -1,4 +1,4 @@
-( function _LoggerToFile_test_s_( ) {
+( function _ToFile_test_s_( ) {
 
 'use strict';
 

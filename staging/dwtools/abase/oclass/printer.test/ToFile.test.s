@@ -5,7 +5,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../printer/top/LoggerToFile.s' );
+  require( '../printer/top/ToFile.s' );
 
   var _ = wTools;
 

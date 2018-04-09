@@ -7,16 +7,24 @@
 if( typeof module !== 'undefined' )
 {
 
-  try
+  if( typeof _global_ === 'undefined' || !_global_.wBase )
   {
-    require( '../../../../Base.s' );
-  }
-  catch( err )
-  {
-    require( 'wTools' );
+    let toolsPath = '../../../../dwtools/Base.s';
+    let toolsExternal = 0;
+    try
+    {
+      require.resolve( toolsPath )/*hhh*/;
+    }
+    catch( err )
+    {
+      toolsExternal = 1;
+      require( 'wTools' );
+    }
+    if( !toolsExternal )
+    require( toolsPath )/*hhh*/;
   }
 
-  var _ = wTools;
+  var _ = _global_.wTools;
 
   _.include( 'wLogger' );
   _.include( 'wFiles' );
@@ -65,7 +73,7 @@ if( typeof module !== 'undefined' )
  * @example
  * var path = __dirname +'/out2.txt';
  * var l = new wPrinterToFile({ outputPath : path });
- * vae l2 = new wLogger({ output : l });
+ * vae l2 = new _.Logger({ output : l });
  * var File = _.FileProvider.HardDrive();
  * l2.log( '1' );
  * FilefileReadAct
@@ -77,8 +85,8 @@ if( typeof module !== 'undefined' )
  *
  */
 
-var _ = wTools;
-var Parent = wPrinterTop;
+var _ = _global_.wTools;
+var Parent = _.PrinterTop;
 var Self = function wPrinterToFile( o )
 {
   if( !( this instanceof Self ) )
@@ -135,7 +143,7 @@ function write()
   var self = this;
 
   debugger;
-  var o = wPrinterBase.prototype.write.apply( self,arguments );
+  var o = _.PrinterBase.prototype.write.apply( self,arguments );
 
   if( !o )
   return;
@@ -240,14 +248,17 @@ _.classMake
   extend : Proto,
 });
 
-// Self.prototype._initChainingMixin();
+_global_[ Self.name ] = _[ Self.nameShort ] = Self;
 
 // --
 // export
 // --
 
+if( typeof module !== 'undefined' )
+if( _global_._UsingWtoolsPrivately_ )
+delete require.cache[ module.id ];
+
 if( typeof module !== 'undefined' && module !== null )
 module[ 'exports' ] = Self;
-_global_[ Self.name ] = wTools[ Self.nameShort ] = Self;
 
 })();

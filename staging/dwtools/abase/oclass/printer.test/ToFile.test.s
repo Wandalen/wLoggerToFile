@@ -1,11 +1,11 @@
-( function _ToFile_test_s_( ) {
+( function _ToFile_test_ss_( ) {
 
 'use strict';
 
 if( typeof module !== 'undefined' )
 {
 
-  require( '../printer/top/LoggerToFile.s' );
+  require( '../printer/top/ToFile.ss' );
 
   var _ = wTools;
 
@@ -34,7 +34,7 @@ var toFile = function( test )
   test.description = 'case1';
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
-  var l = new wLogger();
+  var l = new _.Logger();
   l.outputTo( fl, { combining : 'rewrite' } );
   l.log( 123 )
   var got = _.fileProvider.fileRead( filePath );
@@ -44,7 +44,7 @@ var toFile = function( test )
   test.description = 'case2';
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
-  var l = new wLogger();
+  var l = new _.Logger();
   l.outputTo( fl, { combining : 'rewrite' } );
   l._dprefix = '*';
   l.up( 2 );
@@ -63,7 +63,7 @@ var chaining = function( test )
   test.description = 'case1: Logger->LoggerToFile';
   _.fileProvider.fileDelete( filePath );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
-  var l = new wLogger({ output : loggerToFile });
+  var l = new _.Logger({ output : loggerToFile });
   _.fileProvider.fileDelete( filePath );
   l.log( 'msg' );
   var got = _.fileProvider.fileRead( filePath );
@@ -73,8 +73,8 @@ var chaining = function( test )
   test.description = 'case2: Logger->LoggerToFile->Logger';
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
-  var l = new wLogger({ output : loggerToFile });
-  var l2 = new wLogger({ output : null, onWrite : _onWrite });
+  var l = new _.Logger({ output : loggerToFile });
+  var l2 = new _.Logger({ output : null, onWrite : _onWrite });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
   var expected = [ 'msg' ]
@@ -97,8 +97,8 @@ var chaining = function( test )
   var path1 = filePath;
   _.fileProvider.fileDelete( path1 );
   var loggerToFile = new wPrinterToFile({ outputPath : path1 });
-  var l1 = new wLogger({ output : loggerToFile });
-  var l2 = new wLogger({ output : loggerToFile });
+  var l1 = new _.Logger({ output : loggerToFile });
+  var l2 = new _.Logger({ output : loggerToFile });
   l1.log( '1' );
   l2.log( '2' );
   var got = _.fileProvider.fileRead( path1 );
@@ -108,7 +108,7 @@ var chaining = function( test )
   test.description = 'case5: leveling delta';
   var path1 = filePath;
   var loggerToFile = new wPrinterToFile({ outputPath : path1 });
-  var l1 = new wLogger();
+  var l1 = new _.Logger();
   l.outputTo( loggerToFile, { combining : 'rewrite', leveling : 'delta' } );
   l.up( 2 );
   var got = loggerToFile.level;
@@ -155,7 +155,7 @@ var Proto =
 
   name : 'LoggerToFile',
 
-  onSuiteEnd : cleanTestDir,
+  onSuitEnd : cleanTestDir,
 
   tests :
   {
@@ -173,7 +173,7 @@ var Proto =
 //
 
 _.mapExtend( Self,Proto );
-Self = wTestSuite( Self );
+Self = wTestSuit( Self );
 if( typeof module !== 'undefined' && !module.parent )
 _.Tester.test( Self.name );
 

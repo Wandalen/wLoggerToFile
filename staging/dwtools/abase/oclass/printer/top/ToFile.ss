@@ -167,7 +167,7 @@ function write()
 
   }
 
-  self.fileProvider.fileWriteAct
+  self.fileProvider.fileWrite
   ({
     filePath :  self.outputPath,
     data : terminal + '\n',

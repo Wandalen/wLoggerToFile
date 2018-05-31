@@ -1,6 +1,6 @@
 (function _ToFile_ss_() {
 
-'use strict';
+'use strict'; /*aaa*/
 
 // require
 
@@ -167,7 +167,7 @@ function write()
 
   }
 
-  self.fileProvider.fileWrite
+  self.fileProvider.fileWriteAct
   ({
     filePath :  self.outputPath,
     data : terminal + '\n',

@@ -1,6 +1,6 @@
 (function _ToFile_ss_() {
 
-'use strict'; /*aaa*/
+'use strict'; 
 
 // require
 

@@ -173,6 +173,8 @@ var Proto =
 {
 
   name : 'LoggerToFile',
+  silencing : 1,
+  enabled : 0, // !!! 
 
   onSuitBegin : testDirMake,
   onSuitEnd : cleanTestDir,

@@ -1,6 +1,6 @@
 ( function _ToFile_test_ss_( ) {
 
-'use strict'; 
+'use strict';
 
 if( typeof module !== 'undefined' )
 {
@@ -174,7 +174,7 @@ var Proto =
 
   name : 'LoggerToFile',
   silencing : 1,
-  enabled : 0, // !!! 
+  enabled : 0, // !!!
 
   onSuitBegin : testDirMake,
   onSuitEnd : cleanTestDir,

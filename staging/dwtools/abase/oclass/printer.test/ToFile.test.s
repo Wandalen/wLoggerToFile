@@ -176,8 +176,8 @@ var Proto =
   silencing : 1,
   enabled : 0, // !!!
 
-  onSuitBegin : testDirMake,
-  onSuitEnd : cleanTestDir,
+  onSuiteBegin : testDirMake,
+  onSuiteEnd : cleanTestDir,
 
   tests :
   {
@@ -195,7 +195,7 @@ var Proto =
 //
 
 _.mapExtend( Self,Proto );
-Self = wTestSuit( Self );
+Self = wTestSuite( Self );
 if( typeof module !== 'undefined' && !module.parent )
 _.Tester.test( Self.name );
 

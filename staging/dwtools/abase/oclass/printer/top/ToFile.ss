@@ -107,7 +107,7 @@ function init( o )
 
   Parent.prototype.init.call( self,o );
 
-  if( typeof __dirname !== 'undefined' )
+  if( _.pathEffectiveMainDir )
   self.outputPath = _.pathJoin( _.pathEffectiveMainDir(),self.outputPath );
 
   if( !self.fileProvider )

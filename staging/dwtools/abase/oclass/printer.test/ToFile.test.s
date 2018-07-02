@@ -172,7 +172,7 @@ var inputFrom = function( test )
 var Proto =
 {
 
-  name : 'LoggerToFile',
+  name : 'Tools/base/printer/ToFile',
   silencing : 1,
   enabled : 0, // !!!
 

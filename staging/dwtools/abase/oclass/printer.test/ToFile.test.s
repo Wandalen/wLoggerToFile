@@ -41,7 +41,7 @@ var toFile = function( test )
 {
 
   debugger
-  test.description = 'case1';
+  test.case = 'case1';
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
@@ -52,7 +52,7 @@ var toFile = function( test )
   var expected = '123\n';
   test.identical( got, expected );
 
-  test.description = 'case2';
+  test.case = 'case2';
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger();
@@ -71,7 +71,7 @@ var chaining = function( test )
 {
   var _onWrite = function( o ) { got.push( o.output[ 0 ] ) };
 
-  test.description = 'case1: Logger->LoggerToFile';
+  test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
@@ -83,7 +83,7 @@ var chaining = function( test )
   var expected = 'msg\n';
   test.identical( got, expected );
 
-  test.description = 'case2: Logger->LoggerToFile->Logger';
+  test.case = 'case2: Logger->LoggerToFile->Logger';
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
@@ -93,7 +93,7 @@ var chaining = function( test )
   var expected = [ 'msg' ]
   test.identical( got, expected );
 
-  test.description = 'case3: LoggerToFile->LoggerToFile';
+  test.case = 'case3: LoggerToFile->LoggerToFile';
 
   var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
   if( _.fileProvider.fileStat( filePath ) )
@@ -108,7 +108,7 @@ var chaining = function( test )
   var expected = [ 'msg\n', 'msg\n' ]
   test.identical( got, expected );
 
-  test.description = 'case4: * -> LoggerToFile';
+  test.case = 'case4: * -> LoggerToFile';
   var path1 = filePath;
   if( _.fileProvider.fileStat( path1 ) )
   _.fileProvider.fileDelete( path1 );
@@ -121,7 +121,7 @@ var chaining = function( test )
   var expected = '1\n2\n'
   test.identical( got, expected );
 
-  // test.description = 'case5: leveling delta';
+  // test.case = 'case5: leveling delta';
   // var path1 = filePath;
   // var loggerToFile = new wPrinterToFile({ outputPath : path1 });
   // var l1 = new _.Logger();
@@ -136,7 +136,7 @@ var chaining = function( test )
 
 var inputFrom = function( test )
 {
-  test.description = 'input from console';
+  test.case = 'input from console';
 
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -148,7 +148,7 @@ var inputFrom = function( test )
   var expected = 'something\n';
   test.identical( got, expected );
 
-  test.description = 'input from console twice';
+  test.case = 'input from console twice';
 
   var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
   if( _.fileProvider.fileStat( filePath ) )

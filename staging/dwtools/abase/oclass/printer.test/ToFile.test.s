@@ -1,6 +1,6 @@
 ( function _ToFile_test_ss_( ) {
 
-'use strict'; /**/
+'use strict';
 
 if( typeof module !== 'undefined' )
 {
@@ -45,7 +45,7 @@ var toFile = function( test )
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
-  var l = new _.Logger();
+  var l = new _.Logger({ output : console });
   l.outputTo( fl, { combining : 'rewrite' } );
   l.log( 123 )
   var got = _.fileProvider.fileRead( filePath );
@@ -55,7 +55,7 @@ var toFile = function( test )
   test.case = 'case2';
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
-  var l = new _.Logger();
+  var l = new _.Logger({ output : console });
   l.outputTo( fl, { combining : 'rewrite' } );
   l._dprefix = '*';
   l.up( 2 );
@@ -124,7 +124,7 @@ var chaining = function( test )
   // test.case = 'case5: leveling delta';
   // var path1 = filePath;
   // var loggerToFile = new wPrinterToFile({ outputPath : path1 });
-  // var l1 = new _.Logger();
+  // var l1 = new _.Logger({ output : console });
   // l.outputTo( loggerToFile, { combining : 'rewrite', leveling : 'delta' } );
   // l.up( 2 );
   // var got = loggerToFile.level;

@@ -97,7 +97,7 @@ var Self = function wPrinterToFile( o )
   return Self.prototype.init.apply( this,arguments );
 }
 
-Self.nameShort = 'PrinterToFile';
+Self.shortName = 'PrinterToFile';
 
 //
 
@@ -199,7 +199,7 @@ function write()
 // }
 
 // --
-// relationships
+// relations
 // --
 
 var Composes =
@@ -230,7 +230,7 @@ var Proto =
   write : write,
   // _writeToFile : _writeToFile,
 
-  // relationships
+  // relations
 
   constructor : Self,
   Composes : Composes,
@@ -248,7 +248,7 @@ _.classMake
   extend : Proto,
 });
 
-_global_[ Self.name ] = _[ Self.nameShort ] = Self;
+_global_[ Self.name ] = _[ Self.shortName ] = Self;
 
 // --
 // export

@@ -26,8 +26,8 @@ var filePath;
 
 function testDirMake()
 {
-  testRootDirectory = _.dirTempMake( _.pathJoin( __dirname, '../../..' ) );
-  filePath = _.pathNormalize( _.pathJoin( testRootDirectory, 'out.txt' ) );
+  testRootDirectory = _.path.dirTempMake( _.path.join( __dirname, '../../..' ) );
+  filePath = _.path.normalize( _.path.join( testRootDirectory, 'out.txt' ) );
 }
 
 //
@@ -97,7 +97,7 @@ var chaining = function( test )
 
   test.case = 'case3: LoggerToFile->LoggerToFile';
 
-  var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
+  var path2 = _.path.join( testRootDirectory, 'out2.txt' );
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.fileStat( path2 ) )
@@ -152,7 +152,7 @@ var inputFrom = function( test )
 
   test.case = 'input from console twice';
 
-  var path2 = _.pathJoin( testRootDirectory, 'out2.txt' );
+  var path2 = _.path.join( testRootDirectory, 'out2.txt' );
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.fileStat( path2 ) )

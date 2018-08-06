@@ -107,8 +107,8 @@ function init( o )
 
   Parent.prototype.init.call( self,o );
 
-  if( _.pathEffectiveMainDir )
-  self.outputPath = _.pathJoin( _.pathEffectiveMainDir(),self.outputPath );
+  if( _.path.effectiveMainDir )
+  self.outputPath = _.path.join( _.path.effectiveMainDir(),self.outputPath );
 
   if( !self.fileProvider )
   self.fileProvider = _.FileProvider.HardDrive();
@@ -241,7 +241,7 @@ var Proto =
 
 //
 
-_.classMake
+_.classDeclare
 ({
   cls : Self,
   parent : Parent,

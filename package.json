@@ -1,13 +1,14 @@
 {
   "name": "wloggertofile",
   "version": "0.4.32",
+  "enabled": 0,
   "engine": "node >= 6.0.0",
   "description": "Logging into a file.",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
-      "email": "wanalen@willbe.so>"
+      "email": "wanalen@willbe.so"
     },
     {
       "name": "Volodymyr M.",

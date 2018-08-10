@@ -17,7 +17,7 @@ if( typeof module !== 'undefined' )
 
   if( typeof _global_ === 'undefined' || !_global_.wBase )
   {
-    let toolsPath = '../../../dwtools/Base.s';
+    let toolsPath = '../../../../dwtools/Base.s';
     let toolsExternal = 0;
     try
     {
@@ -184,6 +184,50 @@ function write()
 
 //
 
+function _transformEnd( o )
+{
+  var self = this;
+
+  _.assert( arguments.length === 1, 'expects single argument' );
+
+  // debugger
+
+  o = Parent.prototype._transformEnd.call( self, o );
+
+  if( !o )
+  return;
+
+  _.assert( _.arrayIs( o.outputForTerminal ) );
+  _.assert( o.outputForTerminal.length === 1 );
+
+  var terminal = o.outputForTerminal[ 0 ];
+  if( self.usingTags && _.mapKeys( self.attributes ).length )
+  {
+
+    var text = terminal;
+    terminal = Object.create( null );
+    terminal.text = text;
+
+    for( var t in self.attributes )
+    {
+      terminal[ t ] = self.attributes[ t ];
+    }
+
+  }
+
+  self.fileProvider.fileWriteAct
+  ({
+    filePath : _.path.nativize( self.outputPath ),
+    data : terminal + '\n',
+    writeMode : 'append',
+    sync : 1
+  });
+
+  return o;
+}
+
+//
+
 // function _writeToFile()
 // {
 //   var self = this;
@@ -232,6 +276,8 @@ var Proto =
   // __initChainingMixinWrite : __initChainingMixinWrite,
 
   write : write,
+
+  _transformEnd : _transformEnd,
   // _writeToFile : _writeToFile,
 
   // relations

@@ -176,7 +176,7 @@ var Proto =
 
   name : 'Tools/base/printer/ToFile',
   silencing : 1,
-  enabled : 0, // !!!
+  // enabled : 0, // !!!
 
   onSuiteBegin : testDirMake,
   onSuiteEnd : cleanTestDir,

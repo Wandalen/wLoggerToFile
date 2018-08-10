@@ -1,6 +1,8 @@
 
 # wLoggerToFile [![Build Status](https://travis-ci.org/Wandalen/wLoggerToFile.svg?branch=master)](https://travis-ci.org/Wandalen/wLoggerToFile)
 
+Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.
+
 The module in JavaScript provides convenient, layered, logging into a file. Logger writes messages( incoming & outgoing ) to file specified by path( outputPath ). Writes each message to the end of a file, creates a new file( outputPath ) if it doesn't exist. Then transfers message to the next output(s) object in the chain if any exists.
 
 ## Installation
@@ -62,29 +64,3 @@ l.inputFrom( console );
 console.log( 'aa\nbb' );
 /* save console output into file, message by message */
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,6 +2,14 @@
 
 'use strict';
 
+/**
+  @module Tools/base/printer/ToFile - Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.
+*/
+
+/**
+ * @file printer/ToFile.ss.
+ */
+
 // require
 
 if( typeof module !== 'undefined' )
@@ -23,8 +31,8 @@ if( typeof module !== 'undefined' )
     if( !toolsExternal )
     require( toolsPath );
   }
-
-  var _global = _global_; var _ = _global_.wTools;
+  var _global = _global_;
+  var _ = _global_.wTools;
 
   _.include( 'wLogger' );
   _.include( 'wFiles' );
@@ -84,17 +92,12 @@ if( typeof module !== 'undefined' )
  * //returns '1'
  *
  */
-
-var _global = _global_; var _ = _global_.wTools;
+var _global = _global_;
+var _ = _global_.wTools;
 var Parent = _.PrinterTop;
 var Self = function wPrinterToFile( o )
 {
-  if( !( this instanceof Self ) )
-  if( o instanceof Self )
-  return o;
-  else
-  return new( _.routineJoin( Self, Self, arguments ) );
-  return Self.prototype.init.apply( this,arguments );
+  return _.instanceConstructor( Self, this, arguments );
 }
 
 Self.shortName = 'PrinterToFile';

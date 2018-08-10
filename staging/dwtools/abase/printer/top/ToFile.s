@@ -92,6 +92,7 @@ if( typeof module !== 'undefined' )
  * //returns '1'
  *
  */
+
 var _global = _global_;
 var _ = _global_.wTools;
 var Parent = _.PrinterTop;

@@ -15,7 +15,7 @@
     }
   ],
   "license": "MIT",
-  "main": "staging/dwtools/abase/printer/top/LoggerToFile.s",
+  "main": "staging/dwtools/abase/printer/top/ToFile.s",
   "files": [
     "staging/dwtools/abase/printer",
     "production"

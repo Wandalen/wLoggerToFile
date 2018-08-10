@@ -5,7 +5,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../printer/top/ToFile.s' );
+  require( '../printer/top/ToFile.ss' );
 
   var _ = wTools;
 
@@ -40,7 +40,6 @@ function cleanTestDir()
 var toFile = function( test )
 {
 
-  debugger
   test.case = 'case1';
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -69,7 +68,7 @@ var toFile = function( test )
 
 var chaining = function( test )
 {
-  var _onWrite = function( o ) { got.push( o.output[ 0 ] ) };
+  var onTransformEnd = function( o ) { got.push( o.outputForPrinter[ 0 ] ) };
 
   test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.fileStat( filePath ) )
@@ -87,7 +86,7 @@ var chaining = function( test )
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
-  var l2 = new _.Logger({ output : null, onTransformEnd : _onWrite });
+  var l2 = new _.Logger({ output : null, onTransformEnd : onTransformEnd });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
   var expected = [ 'msg' ]
@@ -138,6 +137,9 @@ var inputFrom = function( test )
 {
   test.case = 'input from console';
 
+  let consoleWasBarred = _.Logger.consoleIsBarred( console );
+  test.suite.consoleBar( 0 );
+
   if( _.fileProvider.fileStat( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
@@ -165,6 +167,9 @@ var inputFrom = function( test )
   var got = [ _.fileProvider.fileRead( filePath ), _.fileProvider.fileRead( path2 ) ];
   var expected = [ 'something\n', 'something\n' ];
   test.identical( got, expected );
+
+  if( consoleWasBarred )
+  test.suite.consoleBar( 1 );
 }
 
 //

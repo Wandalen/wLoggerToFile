@@ -1,4 +1,4 @@
-( function _ToFile_test_ss_( ) {
+( function _ToFile_test_s_( ) {
 
 'use strict';
 
@@ -7,7 +7,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../printer/top/ToFile.ss' );
+  require( '../printer/top/ToFile.s' );
 
   var _ = wTools;
 

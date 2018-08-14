@@ -217,7 +217,7 @@ function _transformEnd( o )
 
   self.fileProvider.fileWriteAct
   ({
-    filePath : _.path.nativize( self.outputPath ),
+    filePath : _.path.pathNativize( self.outputPath ),
     data : terminal + '\n',
     writeMode : 'append',
     sync : 1

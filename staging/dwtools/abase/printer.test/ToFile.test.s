@@ -24,7 +24,7 @@ var filePath;
 
 function testDirMake()
 {
-  testRootDirectory = _.path.dirTempMake( _.path.join( __dirname, '../../..' ) );
+  testRootDirectory = _.path.dirTempOpen( _.path.join( __dirname, '../../..' ) );
   filePath = _.path.normalize( _.path.join( testRootDirectory, 'out.txt' ) );
 }
 

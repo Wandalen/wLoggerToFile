@@ -215,7 +215,7 @@ function _transformEnd( o )
 
   }
 
-  self.fileProvider.fileWriteAct
+  self.fileProvider.fileWrite
   ({
     filePath : _.path.path.nativize( self.outputPath ),
     data : terminal + '\n',

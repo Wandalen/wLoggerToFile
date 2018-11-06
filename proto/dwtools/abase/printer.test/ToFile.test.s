@@ -202,6 +202,6 @@ var Proto =
 _.mapExtend( Self,Proto );
 Self = wTestSuite( Self );
 if( typeof module !== 'undefined' && !module.parent )
-/*_.*/wTester.test( Self.name );
+wTester.test( Self.name );
 
 } )( );

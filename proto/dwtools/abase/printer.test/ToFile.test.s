@@ -41,7 +41,7 @@ var toFile = function( test )
 {
 
   test.case = 'case1';
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var fl = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : console });
@@ -71,11 +71,11 @@ var chaining = function( test )
   var onTransformEnd = function( o ) { got.push( o.outputForPrinter[ 0 ] ) };
 
   test.case = 'case1: Logger->LoggerToFile';
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   l.log( 'msg' );
   var got = _.fileProvider.fileRead( filePath );
@@ -95,9 +95,9 @@ var chaining = function( test )
   test.case = 'case3: LoggerToFile->LoggerToFile';
 
   var path2 = _.path.join( testRootDirectory, 'out2.txt' );
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  if( _.fileProvider.fileStat( path2 ) )
+  if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
@@ -109,7 +109,7 @@ var chaining = function( test )
 
   test.case = 'case4: * -> LoggerToFile';
   var path1 = filePath;
-  if( _.fileProvider.fileStat( path1 ) )
+  if( _.fileProvider.statResolvedRead( path1 ) )
   _.fileProvider.fileDelete( path1 );
   var loggerToFile = new wPrinterToFile({ outputPath : path1 });
   var l1 = new _.Logger({ output : loggerToFile });
@@ -140,7 +140,7 @@ var inputFrom = function( test )
   let consoleWasBarred = _.Logger.consoleIsBarred( console );
   test.suite.consoleBar( 0 );
 
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   loggerToFile.inputFrom( console );
@@ -153,9 +153,9 @@ var inputFrom = function( test )
   test.case = 'input from console twice';
 
   var path2 = _.path.join( testRootDirectory, 'out2.txt' );
-  if( _.fileProvider.fileStat( filePath ) )
+  if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  if( _.fileProvider.fileStat( path2 ) )
+  if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
   var loggerToFile1 = new wPrinterToFile({ outputPath : filePath });
   var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });

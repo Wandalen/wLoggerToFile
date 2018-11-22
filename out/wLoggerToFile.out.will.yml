@@ -11,7 +11,7 @@ about:
     on the server side. Use the module to make your diagnostic code working on
     any platform you work with and to been able to redirect your output to/from
     any destination/source.
-  version: 0.4.57
+  version: 0.4.58
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -88,7 +88,7 @@ path:
 submodule: {}
 reflector:
   reflect.proto.0:
-    reflectMap:
+    filePath:
       ./proto: ./out.release
     srcFilter:
       maskAll:
@@ -112,7 +112,7 @@ reflector:
     inherit:
       - predefined.*
   reflect.proto.1:
-    reflectMap:
+    filePath:
       ./proto: ./out.debug
     srcFilter:
       maskAll:
@@ -158,15 +158,14 @@ reflector:
     inherit:
       - predefined.*
   exported.0:
-    reflectMap:
-      ./proto: true
+    filePath: ./proto
     srcFilter:
       prefixPath: .
     dstFilter:
       prefixPath: .
   exportedFiles.0:
     recursive: 0
-    reflectMap:
+    filePath:
       ./dwtools/Tools.s: true
       ./dwtools/abase/printer/top/ToFile.s: true
       ./dwtools/abase/printer.test/ToFile.test.s: true
@@ -277,7 +276,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.4.57
+    version: 0.4.58
     criterion:
       default: 1
       debug: 1

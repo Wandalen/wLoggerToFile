@@ -38,8 +38,7 @@
     "wLogger": ""
   },
   "devDependencies": {
-    "wTesting": "",
-    "wloggertofile": "."
+    "wTesting": ""
   },
   "keywords": [
     "wTools",

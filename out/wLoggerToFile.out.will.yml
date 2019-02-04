@@ -11,7 +11,7 @@ about:
     on the server side. Use the module to make your diagnostic code working on
     any platform you work with and to been able to redirect your output to/from
     any destination/source.
-  version: 0.4.71
+  version: 0.4.72
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -42,7 +42,7 @@ path:
     path: 'git+https://github.com/Wandalen/wLoggerToFile.git'
   bugs:
     path: 'https://github.com/Wandalen/wLoggerToFile/issues'
-  exportedDir.0:
+  exportedDir.proto.export:
     path: ./proto
     criterion:
       default: 1
@@ -52,7 +52,7 @@ path:
       export: 1
       tar: 1
       public: 1
-  exportedFiles.0:
+  exportedFiles.proto.export:
     path:
       - .
       - ./dwtools
@@ -76,8 +76,6 @@ path:
 submodule: {}
 reflector:
   reflect.proto.:
-    filePath:
-      ./proto: ./out.release
     srcFilter:
       filePath:
         ./proto: ./out.release
@@ -99,8 +97,6 @@ reflector:
     inherit:
       - predefined.*
   reflect.proto.debug:
-    filePath:
-      ./proto: ./out.debug
     srcFilter:
       filePath:
         ./proto: ./out.debug
@@ -136,25 +132,12 @@ reflector:
       debug: 1
     inherit:
       - predefined.*
-  exported.0:
-    filePath: ./proto
+  exported.proto.export:
     srcFilter:
       filePath: ./proto
       prefixPath: .
-  exportedFiles.0:
+  exportedFiles.proto.export:
     recursive: 0
-    filePath:
-      .: true
-      ./dwtools: true
-      ./dwtools/Tools.s: true
-      ./dwtools/abase: true
-      ./dwtools/abase/printer: true
-      ./dwtools/abase/printer/top: true
-      ./dwtools/abase/printer/top/ToFile.s: true
-      ./dwtools/abase/printer.test: true
-      ./dwtools/abase/printer.test/ToFile.test.s: true
-      ./dwtools/amid: true
-      ./dwtools/atop: true
     srcFilter:
       filePath:
         .: true
@@ -290,7 +273,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.4.71
+    version: 0.4.72
     criterion:
       default: 1
       debug: 1
@@ -299,7 +282,7 @@ exported:
       export: 1
       tar: 1
       public: 1
-    exportedReflector: 'reflector::exported.0'
-    exportedFilesReflector: 'reflector::exportedFiles.0'
-    exportedDirPath: 'path::exportedDir.0'
-    exportedFilesPath: 'path::exportedFiles.0'
+    exportedReflector: 'reflector::exported.proto.export'
+    exportedFilesReflector: 'reflector::exportedFiles.proto.export'
+    exportedDirPath: 'path::exportedDir.proto.export'
+    exportedFilesPath: 'path::exportedFiles.proto.export'

@@ -11,7 +11,7 @@ about:
     on the server side. Use the module to make your diagnostic code working on
     any platform you work with and to been able to redirect your output to/from
     any destination/source.
-  version: 0.4.72
+  version: 0.4.73
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -31,11 +31,11 @@ path:
   out:
     path: out
   out.debug:
-    path: ./out.debug
+    path: ./out/debug
     criterion:
       debug: 1
   out.release:
-    path: ./out.release
+    path: ./out/release
     criterion:
       debug: 0
   repository:
@@ -54,17 +54,17 @@ path:
       public: 1
   exportedFiles.proto.export:
     path:
-      - .
-      - ./dwtools
-      - ./dwtools/Tools.s
-      - ./dwtools/abase
-      - ./dwtools/abase/printer
-      - ./dwtools/abase/printer/top
-      - ./dwtools/abase/printer/top/ToFile.s
-      - ./dwtools/abase/printer.test
-      - ./dwtools/abase/printer.test/ToFile.test.s
-      - ./dwtools/amid
-      - ./dwtools/atop
+      - proto
+      - proto/dwtools
+      - proto/dwtools/Tools.s
+      - proto/dwtools/abase
+      - proto/dwtools/abase/printer
+      - proto/dwtools/abase/printer/top
+      - proto/dwtools/abase/printer/top/ToFile.s
+      - proto/dwtools/abase/printer.test
+      - proto/dwtools/abase/printer.test/ToFile.test.s
+      - proto/dwtools/amid
+      - proto/dwtools/atop
     criterion:
       default: 1
       debug: 1
@@ -78,7 +78,7 @@ reflector:
   reflect.proto.:
     srcFilter:
       filePath:
-        ./proto: ./out.release
+        ./proto: ./out/release
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -99,7 +99,7 @@ reflector:
   reflect.proto.debug:
     srcFilter:
       filePath:
-        ./proto: ./out.debug
+        ./proto: ./out/debug
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -134,25 +134,42 @@ reflector:
       - predefined.*
   exported.proto.export:
     srcFilter:
-      filePath: ./proto
+      filePath:
+        ./proto: true
       prefixPath: .
+    criterion:
+      default: 1
+      debug: 1
+      raw: 1
+      proto: 1
+      export: 1
+      tar: 1
+      public: 1
   exportedFiles.proto.export:
     recursive: 0
     srcFilter:
       filePath:
         .: true
-        ./dwtools: true
-        ./dwtools/Tools.s: true
-        ./dwtools/abase: true
-        ./dwtools/abase/printer: true
-        ./dwtools/abase/printer/top: true
-        ./dwtools/abase/printer/top/ToFile.s: true
-        ./dwtools/abase/printer.test: true
-        ./dwtools/abase/printer.test/ToFile.test.s: true
-        ./dwtools/amid: true
-        ./dwtools/atop: true
+        dwtools: true
+        dwtools/Tools.s: true
+        dwtools/abase: true
+        dwtools/abase/printer: true
+        dwtools/abase/printer/top: true
+        dwtools/abase/printer/top/ToFile.s: true
+        dwtools/abase/printer.test: true
+        dwtools/abase/printer.test/ToFile.test.s: true
+        dwtools/amid: true
+        dwtools/atop: true
       basePath: .
       prefixPath: proto
+    criterion:
+      default: 1
+      debug: 1
+      raw: 1
+      proto: 1
+      export: 1
+      tar: 1
+      public: 1
 step:
   clean.out.:
     criterion:
@@ -273,7 +290,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.4.72
+    version: 0.4.73
     criterion:
       default: 1
       debug: 1

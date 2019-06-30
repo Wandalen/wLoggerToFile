@@ -86,7 +86,7 @@ var chaining = function( test )
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
-  var l2 = new _.Logger({ output : null, onTransformEnd : onTransformEnd });
+  var l2 = new _.Logger({ output : null, /*ttt*/onTransformEnd });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
   var expected = [ 'msg' ]
@@ -187,9 +187,9 @@ var Proto =
   tests :
   {
 
-   toFile : toFile,
-   chaining : chaining,
-   inputFrom : inputFrom
+   /*ttt*/toFile,
+   /*ttt*/chaining,
+   /*ttt*/inputFrom
 
   },
 

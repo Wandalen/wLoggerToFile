@@ -223,7 +223,7 @@ function _transformEnd( o )
 //   self.fileProvider.fileWriteAct
 //   ({
 //     filePath :  self.outputPath,
-//     data : data,
+//     /*ttt*/data,
 //     writeMode : 'append',
 //     sync : 1
 //   });
@@ -255,21 +255,21 @@ var Associates =
 var Proto =
 {
 
-  init : init,
+  /*ttt*/init,
 
-  // __initChainingMixinWrite : __initChainingMixinWrite,
+  // /*ttt*/__initChainingMixinWrite,
 
-  write : write,
+  /*ttt*/write,
 
-  _transformEnd : _transformEnd,
-  // _writeToFile : _writeToFile,
+  /*ttt*/_transformEnd,
+  // /*ttt*/_writeToFile,
 
   // relations
 
   /* constructor * : * Self, */
-  Composes : Composes,
-  Aggregates : Aggregates,
-  Associates : Associates,
+  /*ttt*/Composes,
+  /*ttt*/Aggregates,
+  /*ttt*/Associates,
 
 }
 

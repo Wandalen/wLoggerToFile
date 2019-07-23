@@ -223,7 +223,7 @@ function _transformEnd( o )
 //   self.fileProvider.fileWriteAct
 //   ({
 //     filePath :  self.outputPath,
-//     /*ttt*/data,
+//     data,
 //     writeMode : 'append',
 //     sync : 1
 //   });
@@ -255,21 +255,21 @@ var Associates =
 var Proto =
 {
 
-  /*ttt*/init,
+  init,
 
-  // /*ttt*/__initChainingMixinWrite,
+  // __initChainingMixinWrite,
 
-  /*ttt*/write,
+  write,
 
-  /*ttt*/_transformEnd,
-  // /*ttt*/_writeToFile,
+  _transformEnd,
+  // _writeToFile,
 
   // relations
 
   /* constructor * : * Self, */
-  /*ttt*/Composes,
-  /*ttt*/Aggregates,
-  /*ttt*/Associates,
+  Composes,
+  Aggregates,
+  Associates,
 
 }
 
@@ -287,10 +287,6 @@ _global_[ Self.name ] = _[ Self.shortName ] = Self;
 // --
 // export
 // --
-
-if( typeof module !== 'undefined' )
-if( _global_.WTOOLS_PRIVATE )
-{ /* delete require.cache[ module.id ]; */ }
 
 if( typeof module !== 'undefined' && module !== null )
 module[ 'exports' ] = Self;

@@ -33,13 +33,16 @@ about :
 path :
 
   repository : git+https:///github.com/Wandalen/wLoggerToFile.git
+  remotes :
+   - git+https:///github.com/Wandalen/wLoggerToFile.git
+   - npm:///wloggertofile
   bugtracker : https:///github.com/Wandalen/wLoggerToFile/issues
 
 step :
 
   proto.export :
     inherit : module.export
-    export : path::proto
+    export : path::export
     tar : 0
     criterion :
       content : 'proto'

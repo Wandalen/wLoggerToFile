@@ -7,13 +7,13 @@ if( typeof module !== 'undefined' )
 
   require( '../../l9/printer/top/ToFile.ss' );
 
-  var _ = wTools;
+  var _ = _global_.wTools;
 
   _.include( 'wTesting' );
 
 }
 
-var _ = wTools;
+var _ = _global_.wTools;
 var Parent = wTools.Testing;
 var Self = {};
 

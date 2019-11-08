@@ -2,16 +2,20 @@ format: outwillfile-2.0
 root:
   - wLoggerToFile.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wLoggerToFile.out.will.yml: &ref_0
+    hash: 7cb4644631016f7d4f6014ceafcc73f2
+    size: 39979
+  ../.ex.will.yml: &ref_1
     hash: 64abccdfed05607e8fef2e1d94d62e3f
     size: 2474
-  ../.im.will.yml: &ref_1
-    hash: c56a0722b23df68f251d51c38712a79f
-    size: 5010
+  ../.im.will.yml: &ref_2
+    hash: 548ba58e009f398fde995e9cdd17d4e5
+    size: 5084
 module:
   wLoggerToFile.out:
     about:
       name: wLoggerToFile
+      org: noorg
       description: >-
         Class to redirect logging to a file. Logger supports colorful
         formatting, verbosity control, chaining, combining several
@@ -25,11 +29,11 @@ module:
         destination/source.
       enabled: 1
       version: 0.5.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 8.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - wTools
         - log to file
         - save console output into file
@@ -42,11 +46,11 @@ module:
         - color
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@willbe.so>
         - Volodymyr M. <volodymyr.migdal@gmail.com>
       npm.name: wloggertofile
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -77,9 +81,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wLoggerToFile.git'
       origins:
@@ -89,15 +90,15 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wLoggerToFile/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: .
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - ../package-lock.json
+          - ../package.json
+          - ../node_modules
       proto:
         path: ../proto
       export:
@@ -162,11 +163,13 @@ module:
         path: '{path::out.*=}/source/Index.s'
       exported.dir.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path: ../proto
       exported.files.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path:
@@ -354,6 +357,7 @@ module:
           prefixPath: ../proto
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
       exported.files.proto.export:
@@ -366,6 +370,7 @@ module:
         recursive: 0
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
     step:
@@ -719,6 +724,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          reflector: 'reflector::exported.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          reflector: 'reflector::exported.files.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -807,11 +830,13 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wLoggerToFile.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wLoggerToFile
+      org: noorg
       description: >-
         Class to redirect logging to a file. Logger supports colorful
         formatting, verbosity control, chaining, combining several
@@ -825,13 +850,30 @@ module:
         destination/source.
       enabled: 1
       version: 0.5.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 8.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - wTools
+        - log to file
+        - save console output into file
+        - logger
+        - logging
+        - log
+        - colorful log
+        - multilevel log
+        - colors
+        - color
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@willbe.so>
+        - Volodymyr M. <volodymyr.migdal@gmail.com>
       npm.name: wloggertofile
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -860,9 +902,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wLoggerToFile.git'
       origins:
@@ -872,21 +911,21 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wLoggerToFile/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: out
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - package-lock.json
+          - package.json
+          - node_modules
       proto:
-        path: ./proto
+        path: proto
       export:
         path: '{path::proto}/**'
       doc:
-        path: ./doc
+        path: doc
       out.raw.debug:
         criterion:
           debug: debug
@@ -1512,5 +1551,8 @@ module:
         hash: 64abccdfed05607e8fef2e1d94d62e3f
         size: 2474
       ../.im.will.yml:
-        hash: c56a0722b23df68f251d51c38712a79f
-        size: 5010
+        hash: 548ba58e009f398fde995e9cdd17d4e5
+        size: 5084
+      wLoggerToFile.out.will.yml:
+        hash: 7cb4644631016f7d4f6014ceafcc73f2
+        size: 39979

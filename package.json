@@ -22,8 +22,8 @@
   {
     "url" : "https://github.com/Wandalen/wLoggerToFile/issues"
   }, 
-  "dependencies" : { "wTools" : "", "wFiles" : "", "wLogger" : "" }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  "dependencies" : { "wTools" : "alpha", "wFiles" : "alpha", "wLogger" : "alpha" }, 
+  "devDependencies" : { "wTesting" : "alpha" }, 
   "keywords" : 
   [
     "wTools", 

@@ -137,8 +137,8 @@ var inputFrom = function( test )
 {
   test.case = 'input from console';
 
-  let consoleWasBarred = _.Logger.consoleIsBarred( console );
-  test.suite.consoleBar( 0 );
+  let consoleWasBarred = _.Logger.ConsoleIsBarred( console );
+  test.suite.ConsoleBar( 0 );
 
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -169,7 +169,7 @@ var inputFrom = function( test )
   test.identical( got, expected );
 
   if( consoleWasBarred )
-  test.suite.consoleBar( 1 );
+  test.suite.ConsoleBar( 1 );
 }
 
 //

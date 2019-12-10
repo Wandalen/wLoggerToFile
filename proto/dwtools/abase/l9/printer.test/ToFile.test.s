@@ -5,7 +5,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../../l9/printer/top/ToFile.ss' );
+  require( '../../l9/printer/top/ToFile.s' );
 
   var _ = _global_.wTools;
 
@@ -138,7 +138,7 @@ var inputFrom = function( test )
   test.case = 'input from console';
 
   let consoleWasBarred = _.Logger.ConsoleIsBarred( console );
-  test.suite.ConsoleBar( 0 );
+  test.suite.consoleBar( 0 );
 
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -169,7 +169,7 @@ var inputFrom = function( test )
   test.identical( got, expected );
 
   if( consoleWasBarred )
-  test.suite.ConsoleBar( 1 );
+  test.suite.consoleBar( 1 );
 }
 
 //

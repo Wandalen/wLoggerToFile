@@ -126,45 +126,45 @@ function init( o )
 //   proto[ name ] = write;
 // }
 
-function write()
-{
-  var self = this;
+// function write()
+// {
+//   var self = this;
 
-  debugger;
-  var o = _.PrinterBase.prototype.write.apply( self,arguments );
+//   debugger;
+//   var o = _.PrinterBase.prototype.write.apply( self,arguments );
 
-  if( !o )
-  return;
+//   if( !o )
+//   return;
 
-  _.assert( o );
-  _.assert( _.arrayIs( o.output ) );
-  _.assert( o.output.length === 1 );
+//   _.assert( o );
+//   _.assert( _.arrayIs( o.output ) );
+//   _.assert( o.output.length === 1 );
 
-  var terminal = o.output[ 0 ];
-  if( self.usingTags && _.mapKeys( self.attributes ).length )
-  {
+//   var terminal = o.output[ 0 ];
+//   if( self.usingTags && _.mapKeys( self.attributes ).length )
+//   {
 
-    var text = terminal;
-    terminal = Object.create( null );
-    terminal.text = text;
+//     var text = terminal;
+//     terminal = Object.create( null );
+//     terminal.text = text;
 
-    for( var t in self.attributes )
-    {
-      terminal[ t ] = self.attributes[ t ];
-    }
+//     for( var t in self.attributes )
+//     {
+//       terminal[ t ] = self.attributes[ t ];
+//     }
 
-  }
+//   }
 
-  self.fileProvider.fileWriteAct
-  ({
-    filePath :  self.outputPath,
-    data : terminal + '\n',
-    writeMode : 'append',
-    sync : 1
-  });
+//   self.fileProvider.fileWriteAct
+//   ({
+//     filePath :  self.outputPath,
+//     data : terminal + '\n',
+//     writeMode : 'append',
+//     sync : 1
+//   });
 
-  return o;
-}
+//   return o;
+// }
 
 //
 
@@ -201,7 +201,7 @@ function _transformEnd( o )
 
   self.fileProvider.fileWrite
   ({
-    filePath : _.path.path.nativize( self.outputPath ),
+    filePath : self.outputPath,
     data : terminal + '\n',
     writeMode : 'append',
     sync : 1
@@ -259,7 +259,7 @@ var Proto =
 
   // __initChainingMixinWrite,
 
-  write,
+  // write,
 
   _transformEnd,
   // _writeToFile,

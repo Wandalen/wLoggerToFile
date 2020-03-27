@@ -7,16 +7,12 @@
   @module Tools/base/printer/ToFile
 */
 
-/**
- * @file printer/ToFile.ss.
- */
-
 // require
 
 if( typeof module !== 'undefined' )
 {
 
-  let _ = require( '../../../../Tools.s' );
+  let _ = require( '../../../../../dwtools/Tools.s' );
 
   _.include( 'wLogger' );
   _.include( 'wFiles' );

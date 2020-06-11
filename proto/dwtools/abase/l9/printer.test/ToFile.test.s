@@ -17,22 +17,22 @@ var _ = _global_.wTools;
 var Parent = wTools.Testing;
 var Self = {};
 
-var suitePath;
+var suiteTempPath;
 var filePath;
 
 //
 
 function testDirMake()
 {
-  suitePath = _.path.pathDirTempOpen( _.path.join( __dirname, '../../..' ),'PrinterToFile' );
-  filePath = _.path.normalize( _.path.join( suitePath, 'out.txt' ) );
+  suiteTempPath = _.path.pathDirTempOpen( _.path.join( __dirname, '../../..' ),'PrinterToFile' );
+  filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
 }
 
 //
 
 function cleanTestDir()
 {
-  _.fileProvider.filesDelete(suitePath );
+  _.fileProvider.filesDelete(suiteTempPath );
 }
 
 //
@@ -94,7 +94,7 @@ var chaining = function( test )
 
   test.case = 'case3: LoggerToFile->LoggerToFile';
 
-  var path2 = _.path.join( suitePath, 'out2.txt' );
+  var path2 = _.path.join( suiteTempPath, 'out2.txt' );
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )
@@ -152,7 +152,7 @@ var inputFrom = function( test )
 
   test.case = 'input from console twice';
 
-  var path2 = _.path.join( suitePath, 'out2.txt' );
+  var path2 = _.path.join( suiteTempPath, 'out2.txt' );
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )

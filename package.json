@@ -10,7 +10,7 @@
     { "name" : "Volodymyr M.", "email" : "volodymyr.migdal@gmail.com" }
   ],
   "license" : "MIT",
-  "main" : "proto/dwtools/abase/printer/top/ToFile.s",
+  "main" : "proto/dwtools/amid/l1_logger/ToFile.s",
   "files" : [ "proto/dwtools/abase/printer", "proto/dwtools/Tools.s", "out" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" :

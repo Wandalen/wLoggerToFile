@@ -5,7 +5,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  require( '../../l9/printer/top/ToFile.s' );
+  require( '../../l9/logger/ToFile.s' );
 
   var _ = _global_.wTools;
 

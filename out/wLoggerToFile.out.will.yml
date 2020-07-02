@@ -132,7 +132,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: ../proto/dwtools/abase/printer/top/ToFile.s
+        path: ../proto/dwtools/amid/l1_logger/ToFile.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -142,13 +142,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/printer/top/ToFile.s'
+        path: '{path::out.*=1}/source/dwtools/amid/l1_logger/ToFile.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/printer/top/ToFile.s'
+        path: '{path::out.*=1}/source/dwtools/amid/l1_logger/ToFile.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug
@@ -178,11 +178,11 @@ module:
           - ../proto/dwtools/Tools.s
           - ../proto/dwtools/abase
           - ../proto/dwtools/abase/l9
-          - ../proto/dwtools/abase/l9/printer
-          - ../proto/dwtools/abase/l9/printer/top
-          - ../proto/dwtools/abase/l9/printer/top/ToFile.s
-          - ../proto/dwtools/abase/l9/printer.test
-          - ../proto/dwtools/abase/l9/printer.test/ToFile.test.s
+          - ../proto/dwtools/abase/l9/logger
+          - ../proto/dwtools/abase/l9/logger
+          - ../proto/dwtools/abase/l9/logger/ToFile.s
+          - ../proto/dwtools/abase/l9/logger.test
+          - ../proto/dwtools/abase/l9/logger.test/ToFile.test.s
           - ../proto/dwtools/amid
           - ../proto/dwtools/atop
     submodule:
@@ -946,7 +946,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: proto/dwtools/abase/printer/top/ToFile.s
+        path: proto/dwtools/amid/l1_logger/ToFile.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -956,13 +956,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/printer/top/ToFile.s'
+        path: '{path::out.*=1}/source/dwtools/amid/l1_logger/ToFile.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/printer/top/ToFile.s'
+        path: '{path::out.*=1}/source/dwtools/amid/l1_logger/ToFile.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug

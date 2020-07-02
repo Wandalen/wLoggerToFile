@@ -36,10 +36,10 @@ if( typeof module !== 'undefined' )
  * </ul>
  * Chaining:
  * <ul>
- *  <li>Add object to output list [outputTo]{@link wPrinterMid.outputTo}
- *  <li>Remove object from output list [outputUnchain]{@link wPrinterMid.outputUnchain}
- *  <li>Add current logger to target's output list [inputFrom]{@link wPrinterMid.inputFrom}
- *  <li>Remove current logger from target's output list [inputUnchain]{@link wPrinterMid.inputUnchain}
+ *  <li>Add object to output list [outputTo]{@link wLoggerMid.outputTo}
+ *  <li>Remove object from output list [outputUnchain]{@link wLoggerMid.outputUnchain}
+ *  <li>Add current logger to target's output list [inputFrom]{@link wLoggerMid.inputFrom}
+ *  <li>Remove current logger from target's output list [inputUnchain]{@link wLoggerMid.inputUnchain}
  * </ul>
  * @class wPrinterToFile
  * @param { Object } o - Options.
@@ -47,9 +47,9 @@ if( typeof module !== 'undefined' )
  * @param { Object } [ o.outputPath=null ] - Specifies file path for output.
  *
  * @example
- * var path = __dirname +'/out.txt';
- * var l = new wPrinterToFile({ outputPath : path });
- * var File = _.FileProvider.HardDrive();
+ * let path = __dirname +'/out.txt';
+ * let l = new wPrinterToFile({ outputPath : path });
+ * let File = _.FileProvider.HardDrive();
  * l.log( '1' );
  * FilefileReadAct
  * ({
@@ -59,10 +59,10 @@ if( typeof module !== 'undefined' )
  * //returns '1'
  *
  * @example
- * var path = __dirname +'/out2.txt';
- * var l = new wPrinterToFile({ outputPath : path });
+ * let path = __dirname +'/out2.txt';
+ * let l = new wPrinterToFile({ outputPath : path });
  * vae l2 = new _.Logger({ output : l });
- * var File = _.FileProvider.HardDrive();
+ * let File = _.FileProvider.HardDrive();
  * l2.log( '1' );
  * FilefileReadAct
  * ({
@@ -73,10 +73,10 @@ if( typeof module !== 'undefined' )
  *
  */
 
-var _global = _global_;
-var _ = _global_.wTools;
-var Parent = _.PrinterTop;
-var Self = function wPrinterToFile( o )
+let _global = _global_;
+let _ = _global_.wTools;
+let Parent = _.LoggerTop;
+let Self = function wPrinterToFile( o )
 {
   return _.workpiece.construct( Self, this, arguments );
 }
@@ -87,7 +87,7 @@ Self.shortName = 'PrinterToFile';
 
 function init( o )
 {
-  var self = this;
+  let self = this;
 
   Parent.prototype.init.call( self,o );
 
@@ -103,8 +103,8 @@ function init( o )
 
 // function __initChainingMixinWrite( name )
 // {
-//   var proto = this;
-//   var nameAct = name + 'Act';
+//   let proto = this;
+//   let nameAct = name + 'Act';
 
 //   _.assert( Object.hasOwnProperty.call( proto,'constructor' ) )
 //   _.assert( arguments.length === 1 );
@@ -124,10 +124,10 @@ function init( o )
 
 // function write()
 // {
-//   var self = this;
+//   let self = this;
 
 //   debugger;
-//   var o = _.PrinterBase.prototype.write.apply( self,arguments );
+//   let o = _.LoggerBasic.prototype.write.apply( self,arguments );
 
 //   if( !o )
 //   return;
@@ -136,15 +136,15 @@ function init( o )
 //   _.assert( _.arrayIs( o.output ) );
 //   _.assert( o.output.length === 1 );
 
-//   var terminal = o.output[ 0 ];
+//   let terminal = o.output[ 0 ];
 //   if( self.usingTags && _.mapKeys( self.attributes ).length )
 //   {
 
-//     var text = terminal;
+//     let text = terminal;
 //     terminal = Object.create( null );
 //     terminal.text = text;
 
-//     for( var t in self.attributes )
+//     for( let t in self.attributes )
 //     {
 //       terminal[ t ] = self.attributes[ t ];
 //     }
@@ -166,7 +166,7 @@ function init( o )
 
 function _transformEnd( o )
 {
-  var self = this;
+  let self = this;
 
   _.assert( arguments.length === 1, 'Expects single argument' );
 
@@ -180,15 +180,15 @@ function _transformEnd( o )
   _.assert( _.arrayIs( o.outputForTerminal ) );
   _.assert( o.outputForTerminal.length === 1 );
 
-  var terminal = o.outputForTerminal[ 0 ];
+  let terminal = o.outputForTerminal[ 0 ];
   if( self.usingTags && _.mapKeys( self.attributes ).length )
   {
 
-    var text = terminal;
+    let text = terminal;
     terminal = Object.create( null );
     terminal.text = text;
 
-    for( var t in self.attributes )
+    for( let t in self.attributes )
     {
       terminal[ t ] = self.attributes[ t ];
     }
@@ -210,11 +210,11 @@ function _transformEnd( o )
 
 // function _writeToFile()
 // {
-//   var self = this;
+//   let self = this;
 //   _.assert( arguments.length );
 //   _.assert( _.strIs( self.outputPath ),'outputPath is not defined for PrinterToFile' );
 
-//   var data = _.strConcat.apply( { },arguments ) + '\n';
+//   let data = _.strConcat.apply( { },arguments ) + '\n';
 
 //   self.fileProvider.fileWriteAct
 //   ({
@@ -230,16 +230,16 @@ function _transformEnd( o )
 // relations
 // --
 
-var Composes =
+let Composes =
 {
   outputPath : 'output.log',
 }
 
-var Aggregates =
+let Aggregates =
 {
 }
 
-var Associates =
+let Associates =
 {
   fileProvider : null,
 }
@@ -248,7 +248,7 @@ var Associates =
 // prototype
 // --
 
-var Proto =
+let Proto =
 {
 
   init,

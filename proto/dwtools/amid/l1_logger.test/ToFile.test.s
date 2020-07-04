@@ -24,7 +24,7 @@ var filePath;
 
 function testDirMake()
 {
-  suiteTempPath = _.path.pathDirTempOpen( _.path.join( __dirname, '../../..' ),'PrinterToFile' );
+  suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ),'PrinterToFile' );
   filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
 }
 

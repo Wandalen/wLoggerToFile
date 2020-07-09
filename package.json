@@ -10,8 +10,8 @@
     { "name" : "Volodymyr M.", "email" : "volodymyr.migdal@gmail.com" }
   ],
   "license" : "MIT",
-  "main" : "proto/dwtools/amid/l1_logger/ToFile.s",
-  "files" : [ "proto/dwtools/amid/l1_logger", "proto/dwtools/Tools.s", "out" ],
+  "main" : "proto/wtools/amid/l1_logger/ToFile.s",
+  "files" : [ "proto/wtools/amid/l1_logger", "proto/wtools/Tools.s", "out" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" :
   {

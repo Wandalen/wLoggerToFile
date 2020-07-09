@@ -2,15 +2,12 @@ format: outwillfile-2.0
 root:
   - wLoggerToFile.out
 consistency:
-  wLoggerToFile.out.will.yml: &ref_0
-    hash: 16b92b74cc0979e658cdca65a085b21b
-    size: 39713
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: 6c6a2317c164d3479f90fe2c99e026ee
     size: 2475
-  ../.im.will.yml: &ref_2
-    hash: 7a7b00bb92a647a2ad65b1035b485539
-    size: 5078
+  ../.im.will.yml: &ref_1
+    hash: 6af620646d07dc0b3f24f02f78f858e1
+    size: 5075
 module:
   wLoggerToFile.out:
     about:
@@ -29,11 +26,11 @@ module:
         destination/source.
       enabled: 1
       version: 0.5.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
         - log to file
         - save console output into file
@@ -46,11 +43,11 @@ module:
         - color
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
         - Volodymyr M. <volodymyr.migdal@gmail.com>
       npm.name: wloggertofile
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -716,24 +713,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -822,9 +801,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wLoggerToFile.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wLoggerToFile
@@ -842,30 +820,13 @@ module:
         destination/source.
       enabled: 1
       version: 0.5.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
-        - log to file
-        - save console output into file
-        - logger
-        - logging
-        - log
-        - colorful log
-        - multilevel log
-        - colors
-        - color
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
-        - Volodymyr M. <volodymyr.migdal@gmail.com>
+      contributors: *ref_4
       npm.name: wloggertofile
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -1534,6 +1495,5 @@ module:
         hash: 6c6a2317c164d3479f90fe2c99e026ee
         size: 2475
       ../.im.will.yml:
-        hash: 7a7b00bb92a647a2ad65b1035b485539
-        size: 5078
-      wLoggerToFile.out.will.yml: *ref_0
+        hash: 6af620646d07dc0b3f24f02f78f858e1
+        size: 5075

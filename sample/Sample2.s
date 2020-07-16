@@ -1,7 +1,7 @@
 if( typeof module !== 'undefined' )
 require( 'wloggertofile' );
 
-var _ = wTools;
+let _ = wTools;
 
 var l1 = new wLoggerToFile({ outputPath : 'out1.log' });
 var l2 = new wLoggerToFile({ outputPath : 'out2.log' });

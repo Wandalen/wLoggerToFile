@@ -1,7 +1,7 @@
 if( typeof module !== 'undefined' )
 require( 'wloggertofile' );
 
-var _ = wTools;
+let _ = wTools;
 var logger = new wLoggerToFile();
 
 console.log( 'output',logger.output );

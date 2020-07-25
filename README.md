@@ -1,5 +1,5 @@
 
-# module::LoggerToFile [![Status](https://github.com/Wandalen/wLoggerToFile/workflows/publish/badge.svg)](https://github.com/Wandalen/wLoggerToFile/actions?query=workflow%3Apublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
+# module::LoggerToFile [![status](https://github.com/Wandalen/wLoggerToFile/workflows/publish/badge.svg)](https://github.com/Wandalen/wLoggerToFile/actions?query=workflow%3Apublish) [![experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
 Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.
 

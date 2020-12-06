@@ -68,7 +68,7 @@ var toFile = function( test )
 
 var chaining = function( test )
 {
-  var onTransformEnd = function( o ) { got.push( o.outputForPrinter[ 0 ] ) };
+  var onTransformEnd = function( o ) { got.push( o._outputForPrinter[ 0 ] ) };
 
   test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.statResolvedRead( filePath ) )

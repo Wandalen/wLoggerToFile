@@ -177,10 +177,10 @@ function _transformEnd( o )
   if( !o )
   return;
 
-  _.assert( _.arrayIs( o.outputForTerminal ) );
-  _.assert( o.outputForTerminal.length === 1 );
+  _.assert( _.arrayIs( o._outputForTerminal ) );
+  _.assert( o._outputForTerminal.length === 1 );
 
-  let terminal = o.outputForTerminal[ 0 ];
+  let terminal = o._outputForTerminal[ 0 ];
   if( self.usingTags && _.mapKeys( self.attributes ).length )
   {
 

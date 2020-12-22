@@ -1,11 +1,13 @@
-( function _ToFile_test_s_( ) {
+( function _ToFile_test_s_( )
+{
 
 'use strict';
 
 if( typeof module !== 'undefined' )
 {
 
-  require( '../../l9/logger/ToFile.s' );
+  // require( '../../l9/logger/ToFile.s' );
+  require( '../l1_logger/ToFile.s' );
 
   let _ = _global_.wTools;
 
@@ -17,14 +19,13 @@ let _ = _global_.wTools;
 let Parent = wTools.Testing;
 let Self = {};
 
-var suiteTempPath;
-var filePath;
+var suiteTempPath, filePath;
 
 //
 
 function testDirMake()
 {
-  suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ),'PrinterToFile' );
+  suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ), 'PrinterToFile' );
   filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
 }
 
@@ -37,7 +38,7 @@ function cleanTestDir()
 
 //
 
-var toFile = function( test )
+function toFile( test )
 {
 
   test.case = 'case1';
@@ -66,10 +67,8 @@ var toFile = function( test )
 
 //
 
-var chaining = function( test )
+function chaining( test )
 {
-  var onTransformEnd = function( o ) { got.push( o._outputForPrinter[ 0 ] ) };
-
   test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -129,11 +128,16 @@ var chaining = function( test )
   // var got = loggerToFile.level;
   // var expected = 2;
   // test.identical( got, expected );
+
+  /* - */
+
+  function onTransformEnd( o ) { got.push( o._outputForPrinter[ 0 ] ) };
+
 }
 
 //
 
-var inputFrom = function( test )
+function inputFrom( test )
 {
   test.case = 'input from console';
 
@@ -187,9 +191,9 @@ var Proto =
   tests :
   {
 
-   toFile,
-   chaining,
-   inputFrom
+    toFile,
+    chaining,
+    inputFrom
 
   },
 
@@ -199,7 +203,7 @@ var Proto =
 
 //
 
-_.mapExtend( Self,Proto );
+_.mapExtend( Self, Proto );
 Self = wTestSuite( Self );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );

@@ -1,16 +1,16 @@
 if( typeof module !== 'undefined' )
-require( 'wloggertofile' );
+var wLoggerToFile = require( 'wloggertofile' );
 
 let _ = wTools;
 
 var l1 = new wLoggerToFile({ outputPath : 'out1.log' });
 var l2 = new wLoggerToFile({ outputPath : 'out2.log' });
 
-console.log( 'l1.outputPath',l1.outputPath );
-console.log( 'l2.outputPath',l2.outputPath );
+console.log( 'l1.outputPath', l1.outputPath );
+console.log( 'l2.outputPath', l2.outputPath );
 
-logger.outputTo( l1,{ combining : 'append' } );
-logger.outputTo( l2,{ combining : 'append' } );
+logger.outputTo( l1, { combining : 'append' } );
+logger.outputTo( l2, { combining : 'append' } );
 
 logger._dprefix = '~';
 l1._dprefix = '+';

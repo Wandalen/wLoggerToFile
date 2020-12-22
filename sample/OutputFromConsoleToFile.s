@@ -1,6 +1,6 @@
 
 if( typeof module !== 'undefined' )
-require( 'wloggertofile' );
+var wLoggerToFile = require( 'wloggertofile' );
 
 let _ = wTools;
 var l1 = new wLoggerToFile();

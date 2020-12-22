@@ -1,4 +1,5 @@
-(function _ToFile_s_() {
+(function _ToFile_s_()
+{
 
 'use strict';
 
@@ -12,7 +13,8 @@
 if( typeof module !== 'undefined' )
 {
 
-  let _ = require( '../../../../../wtools/Tools.s' );
+  // let _ = require( '../../../../../wtools/Tools.s' );
+  let _ = require( './../../Tools.s' );
 
   _.include( 'wLogger' );
   _.include( 'wFiles' );
@@ -76,7 +78,8 @@ if( typeof module !== 'undefined' )
 let _global = _global_;
 let _ = _global_.wTools;
 let Parent = _.Logger;
-let Self = function wPrinterToFile( o )
+let Self = wPrinterToFile;
+function wPrinterToFile( o )
 {
   return _.workpiece.construct( Self, this, arguments );
 }
@@ -89,10 +92,10 @@ function init( o )
 {
   let self = this;
 
-  Parent.prototype.init.call( self,o );
+  Parent.prototype.init.call( self, o );
 
   if( _.path.effectiveMainDir )
-  self.outputPath = _.path.join( _.path.effectiveMainDir(),self.outputPath );
+  self.outputPath = _.path.join( _.path.effectiveMainDir(), self.outputPath );
 
   if( !self.fileProvider )
   self.fileProvider = _.FileProvider.HardDrive();

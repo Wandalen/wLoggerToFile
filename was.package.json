@@ -23,7 +23,7 @@
     "url" : "https://github.com/Wandalen/wLoggerToFile/issues"
   },
   "dependencies" : { "wTools" : "", "wFiles" : "", "wLogger" : "" },
-  "devDependencies" : { "wTesting" : "" },
+  "devDependencies" : { "wTesting" : "", "wloggertofile" : "file:.", "eslint" : "7.1.0" },
   "keywords" :
   [
     "wTools",

@@ -1,11 +1,11 @@
 if( typeof module !== 'undefined' )
-require( 'wloggertofile' );
+var wLoggerToFile = require( 'wloggertofile' );
 
 let _ = wTools;
 var logger = new wLoggerToFile();
 
-console.log( 'output',logger.output );
-console.log( 'outputPath',logger.outputPath );
+console.log( 'output', logger.output );
+console.log( 'outputPath', logger.outputPath );
 
 logger._dprefix = '-';
 logger.log( 'a1\nb1' );

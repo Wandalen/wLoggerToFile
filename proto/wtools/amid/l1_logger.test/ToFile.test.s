@@ -19,22 +19,38 @@ let _ = _global_.wTools;
 let Parent = wTools.Testing;
 let Self = {};
 
-var suiteTempPath, filePath;
+var filePath;
 
 //
 
-function testDirMake()
+function onSuiteBegin()
 {
-  suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ), 'PrinterToFile' );
-  filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
+  let context = this;
+  context.suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../..' ), 'LoggetToFile' );
+  filePath = _.path.normalize( _.path.join( context.suiteTempPath, 'out.txt' ) );
 }
 
 //
 
-function cleanTestDir()
+function onSuiteEnd()
 {
-  _.fileProvider.filesDelete(suiteTempPath );
+  let context = this;
+  _.assert( _.strHas( context.suiteTempPath, '/LoggetToFile-' ) )
+  _.path.tempClose( context.suiteTempPath );
 }
+
+// function testDirMake()
+// {
+//   suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ), 'PrinterToFile' );
+//   filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
+// }
+
+// //
+
+// function cleanTestDir()
+// {
+//   _.fileProvider.filesDelete( suiteTempPath );
+// }
 
 //
 
@@ -185,8 +201,15 @@ var Proto =
   silencing : 1,
   // enabled : 0, // !!!
 
-  onSuiteBegin : testDirMake,
-  onSuiteEnd : cleanTestDir,
+  // onSuiteBegin : testDirMake,
+  // onSuiteEnd : cleanTestDir,
+  onSuiteBegin,
+  onSuiteEnd,
+
+  context :
+  {
+    suiteTempPath : null
+  },
 
   tests :
   {

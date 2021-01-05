@@ -187,7 +187,7 @@ function _transformEnd( o )
     || ( o._outputForPrinter && o._outputForPrinter.length === 1 )
   );
 
-  let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ];
+  let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ]; /* can be console or another Printer */
   if( self.usingTags && _.mapKeys( self.attributes ).length )
   {
 

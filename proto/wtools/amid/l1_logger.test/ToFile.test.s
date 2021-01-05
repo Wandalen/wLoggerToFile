@@ -157,6 +157,7 @@ function chaining( test )
 function inputFrom( test )
 {
   var context = this;
+  let silencedLogger = new _.Logger({ name : 'silenced' });
 
   test.case = 'input from console';
 
@@ -165,7 +166,7 @@ function inputFrom( test )
 
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : silencedLogger });
   loggerToFile.inputFrom( console );
   console.log( 'something' )
   loggerToFile.inputUnchain( console );
@@ -180,8 +181,8 @@ function inputFrom( test )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
-  var loggerToFile1 = new wPrinterToFile({ outputPath : filePath });
-  var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
+  var loggerToFile1 = new wPrinterToFile({ outputPath : filePath, output : silencedLogger });
+  var loggerToFile2 = new wPrinterToFile({ outputPath : path2, output : silencedLogger });
   loggerToFile1.inputFrom( console );
   loggerToFile2.inputFrom( console );
   console.log( 'something' )

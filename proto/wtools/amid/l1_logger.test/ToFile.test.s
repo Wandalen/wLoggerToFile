@@ -60,7 +60,7 @@ function toFile( test )
   test.case = 'case1';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var fl = new wPrinterToFile({ outputPath : filePath });
+  var fl = new wPrinterToFile({ output : console, outputPath : filePath });
   var l = new _.Logger({ output : console });
   l.outputTo( fl, { combining : 'rewrite' } );
   l.log( 123 )
@@ -70,7 +70,7 @@ function toFile( test )
 
   test.case = 'case2';
   _.fileProvider.fileDelete( filePath );
-  var fl = new wPrinterToFile({ outputPath : filePath });
+  var fl = new wPrinterToFile({ outputPath : filePath, output : console });
   var l = new _.Logger({ output : console });
   l.outputTo( fl, { combining : 'rewrite' } );
   l._dprefix = '*';
@@ -85,10 +85,12 @@ function toFile( test )
 
 function chaining( test )
 {
+  let context = this;
+
   test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : console });
   var l = new _.Logger({ output : loggerToFile });
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -101,21 +103,20 @@ function chaining( test )
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
-  var l2 = new _.Logger({ output : null, onTransformEnd });
+  var l2 = new _.Logger({ output : console, onTransformEnd });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
   var expected = [ 'msg' ]
   test.identical( got, expected );
 
   test.case = 'case3: LoggerToFile->LoggerToFile';
-
-  var path2 = _.path.join( suiteTempPath, 'out2.txt' );
+  var path2 = _.path.join( context.suiteTempPath, 'out2.txt' );
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
-  var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
+  var loggerToFile2 = new wPrinterToFile({ outputPath : path2, output : console });
   loggerToFile.outputTo( loggerToFile2, { combining : 'rewrite' } );
   loggerToFile.log( 'msg' );
   var got = [ _.fileProvider.fileRead( filePath ), _.fileProvider.fileRead( path2 ) ];
@@ -126,7 +127,7 @@ function chaining( test )
   var path1 = filePath;
   if( _.fileProvider.statResolvedRead( path1 ) )
   _.fileProvider.fileDelete( path1 );
-  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
+  var loggerToFile = new wPrinterToFile({ outputPath : path1, output : console });
   var l1 = new _.Logger({ output : loggerToFile });
   var l2 = new _.Logger({ output : loggerToFile });
   l1.log( '1' );
@@ -147,7 +148,7 @@ function chaining( test )
 
   /* - */
 
-  function onTransformEnd( o ) { got.push( o._outputForPrinter[ 0 ] ) };
+  function onTransformEnd( o ) { got.push( o._outputForTerminal[ 0 ] ) };
 
 }
 
@@ -155,6 +156,8 @@ function chaining( test )
 
 function inputFrom( test )
 {
+  var context = this;
+
   test.case = 'input from console';
 
   let consoleWasBarred = _.Logger.ConsoleIsBarred( console );
@@ -172,7 +175,7 @@ function inputFrom( test )
 
   test.case = 'input from console twice';
 
-  var path2 = _.path.join( suiteTempPath, 'out2.txt' );
+  var path2 = _.path.join( context.suiteTempPath, 'out2.txt' );
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )

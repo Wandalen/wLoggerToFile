@@ -180,10 +180,14 @@ function _transformEnd( o )
   if( !o )
   return;
 
-  _.assert( _.arrayIs( o._outputForTerminal ) );
-  _.assert( o._outputForTerminal.length === 1 );
+  _.assert( _.arrayIs( o._outputForTerminal ) || _.arrayIs( o._outputForPrinter ) );
+  _.assert
+  (
+    ( o._outputForTerminal && o._outputForTerminal.length === 1 )
+    || ( o._outputForPrinter && o._outputForPrinter.length === 1 )
+  );
 
-  let terminal = o._outputForTerminal[ 0 ];
+  let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ];
   if( self.usingTags && _.mapKeys( self.attributes ).length )
   {
 

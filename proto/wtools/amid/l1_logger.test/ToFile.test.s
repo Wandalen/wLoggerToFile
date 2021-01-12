@@ -248,6 +248,8 @@ function callbacks( test )
   var expected = 'msg\n';
   test.identical( got, expected );
 
+  /* */
+
   test.case = 'Logger -> LoggerToFile ( with onTransformEnd )';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );

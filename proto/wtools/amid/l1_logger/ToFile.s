@@ -178,11 +178,11 @@ function _writeToChannelWithoutExclusion( channelName, args )
 
   let transformation = Parent.prototype._writeToChannelWithoutExclusion.call( self, channelName, args );
 
-  if( transformation._outputForTerminal )
+  if( transformation._outputForTerminal ) /* output : console */
   data = transformation._outputForTerminal[ 0 ];
-  else if( transformation._outputForPrinter )
+  else if( transformation._outputForPrinter ) /* output : Printer */
   data = transformation._outputForPrinter[ 0 ];
-  else
+  else /* output : null */
   data = transformation.joinedInput;
 
   debugger;

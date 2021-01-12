@@ -6,7 +6,6 @@
 if( typeof module !== 'undefined' )
 {
 
-  // require( '../../l9/logger/ToFile.s' );
   require( '../l1_logger/ToFile.s' );
 
   let _ = _global_.wTools;
@@ -38,19 +37,6 @@ function onSuiteEnd()
   _.assert( _.strHas( context.suiteTempPath, '/LoggetToFile-' ) )
   _.path.tempClose( context.suiteTempPath );
 }
-
-// function testDirMake()
-// {
-//   suiteTempPath = _.path.tempOpen( _.path.join( __dirname, '../../..' ), 'PrinterToFile' );
-//   filePath = _.path.normalize( _.path.join( suiteTempPath, 'out.txt' ) );
-// }
-
-// //
-
-// function cleanTestDir()
-// {
-//   _.fileProvider.filesDelete( suiteTempPath );
-// }
 
 //
 
@@ -136,6 +122,21 @@ function chaining( test )
   var expected = '1\n2\n'
   test.identical( got, expected );
 
+  test.case = 'case5: LoggerToFile -> *';
+  var path1 = filePath;
+  if( _.fileProvider.statResolvedRead( path1 ) )
+  _.fileProvider.fileDelete( path1 );
+  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
+  var l1 = new _.Logger({ name : 'l1' });
+  var l2 = new _.Logger({ name : 'l2' });
+  loggerToFile.outputTo( l1 );
+  loggerToFile.outputTo( l2 );
+  loggerToFile.log( '1' );
+  loggerToFile.log( '2' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = '1\n2\n'
+  test.identical( got, expected );
+
   // test.case = 'case5: leveling delta';
   // var path1 = filePath;
   // var loggerToFile = new wPrinterToFile({ outputPath : path1 });
@@ -157,7 +158,6 @@ function chaining( test )
 function inputFrom( test )
 {
   var context = this;
-  // let silencedLogger = new _.Logger({ name : 'silenced' });
 
   test.case = 'input from console';
 
@@ -198,6 +198,37 @@ function inputFrom( test )
 
 //
 
+// function callbacks( test )
+// {
+//   let context = this;
+
+//   test.case = 'Logger ( with onWriteBegin ) -> LoggerToFile';
+//   if( _.fileProvider.statResolvedRead( filePath ) )
+//   _.fileProvider.fileDelete( filePath );
+//   var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : console, onWriteBegin });
+//   var l = new _.Logger({ name : 'l', output : loggerToFile, onWriteBegin });
+//   // if( _.fileProvider.statResolvedRead( filePath ) )
+//   // _.fileProvider.fileDelete( filePath );
+//   l.log( 'msg' );
+//   var got = _.fileProvider.fileRead( filePath );
+//   var expected = 'onWriteBegin.l : msg\n';
+//   test.identical( got, expected );
+
+//   /* - */
+
+//   function onWriteBegin( o )
+//   {
+//     console.log( 'onWriteBegin' + this.name + ', OOO : ', o )
+//     o.input[ 0 ] = `onWriteBegin.${this.name} : ${o.input[ 0 ]}`;
+//     return o;
+//   }
+
+//   function onWriteEnd( o ) { got.push( o.joinedInput ) }
+
+// }
+
+//
+
 var Proto =
 {
 
@@ -205,8 +236,6 @@ var Proto =
   silencing : 1,
   // enabled : 0, // !!!
 
-  // onSuiteBegin : testDirMake,
-  // onSuiteEnd : cleanTestDir,
   onSuiteBegin,
   onSuiteEnd,
 
@@ -220,7 +249,8 @@ var Proto =
 
     toFile,
     chaining,
-    inputFrom
+    inputFrom,
+    // callbacks,
 
   },
 

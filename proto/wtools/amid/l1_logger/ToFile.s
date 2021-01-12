@@ -167,33 +167,106 @@ function init( o )
 
 //
 
+/* Yevhen : call parent method, then write to file, onWriteBegin/End is called before writing */
+// function _writeToChannelWithoutExclusion( channelName, args )
+// {
+//   let self = this;
+//   let data;
+
+//   _.assert( arguments.length === 2, 'Expects 2 arguments' );
+
+//   debugger
+
+//   let transformation = Parent.prototype._writeToChannelWithoutExclusion.call( self, channelName, args );
+
+//   if( transformation._outputForTerminal ) /* output : console */
+//   data = transformation._outputForTerminal[ 0 ];
+//   else if( transformation._outputForPrinter ) /* output : Printer */
+//   data = transformation._outputForPrinter[ 0 ];
+//   else /* output : null */
+//   data = transformation.joinedInput;
+
+//   debugger;
+
+//   self.fileProvider.fileWrite
+//   ({
+//     filePath : self.outputPath,
+//     data : data + '\n',
+//     writeMode : 'append',
+//     sync : 1
+//   });
+
+//   return transformation;
+// }
+
+/* Yevhen : copy of the Parent method with writing to a file after onWriteBegin callback */
 function _writeToChannelWithoutExclusion( channelName, args )
 {
   let self = this;
-  let data;
+  let inputChainer = self[ chainerSymbol ];
 
-  _.assert( arguments.length === 2, 'Expects 2 arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
+  _.assert( _.strIs( channelName ) );
+  _.assert( _.longIs( args ) );
 
-  debugger
+  args = _.filter_( null, args, ( a ) => a );
+  if( !args.length )
+  return;
 
-  let transformation = Parent.prototype._writeToChannelWithoutExclusion.call( self, channelName, args );
+  let transformation =
+  {
+    input : args,
+    channelName,
+  }
 
-  if( transformation._outputForTerminal ) /* output : console */
-  data = transformation._outputForTerminal[ 0 ];
-  else if( transformation._outputForPrinter ) /* output : Printer */
-  data = transformation._outputForPrinter[ 0 ];
-  else /* output : null */
-  data = transformation.joinedInput;
-
-  debugger;
+  self.transform.head.call( self, self.transform, [ transformation ] );
+  if( self.onWriteBegin )
+  self.onWriteBegin( transformation );
+  if( transformation.discarding )
+  return transformation;
 
   self.fileProvider.fileWrite
   ({
     filePath : self.outputPath,
-    data : data + '\n',
+    data : transformation.input[ 0 ] + '\n',
     writeMode : 'append',
     sync : 1
   });
+
+  self.outputs.forEach( ( chainLink ) =>
+  {
+    let outputChainer = chainLink.outputPrinter[ chainerSymbol ];
+
+    transformation.chainLink = chainLink;
+    let transformation2 = self.transform( transformation );
+    _.assert( transformation === transformation2 );
+
+    if( transformation.discarding )
+    return;
+
+    let outputData = transformation.output;
+    _.assert( _.longIs( outputData ) );
+
+    if( chainLink.originalOutput )
+    {
+      return outputChainer.originalWriteMap[ channelName ].apply( chainLink.outputPrinter, outputData );
+    }
+
+    if( chainLink.write && chainLink.write[ channelName ] )
+    {
+      chainLink.write[ channelName ].apply( chainLink.outputPrinter, outputData );
+    }
+    else
+    {
+      _.assert( _.routineIs( chainLink.outputPrinter[ channelName ] ) );
+      chainLink.outputPrinter[ channelName ].apply( chainLink.outputPrinter, outputData );
+      /* xxx : use _writeAct here */
+    }
+
+  });
+
+  if( self.onWriteEnd )
+  self.onWriteEnd( transformation );
 
   return transformation;
 }
@@ -264,6 +337,12 @@ function _writeToChannelWithoutExclusion( channelName, args )
 //   });
 
 // }
+
+// --
+// fields
+// --
+
+let chainerSymbol = Symbol.for( 'chainer' );
 
 // --
 // relations

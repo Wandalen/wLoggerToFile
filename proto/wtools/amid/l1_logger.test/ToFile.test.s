@@ -198,34 +198,93 @@ function inputFrom( test )
 
 //
 
-// function callbacks( test )
-// {
-//   let context = this;
+function callbacks( test )
+{
+  let context = this;
 
-//   test.case = 'Logger ( with onWriteBegin ) -> LoggerToFile';
-//   if( _.fileProvider.statResolvedRead( filePath ) )
-//   _.fileProvider.fileDelete( filePath );
-//   var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : console, onWriteBegin });
-//   var l = new _.Logger({ name : 'l', output : loggerToFile, onWriteBegin });
-//   // if( _.fileProvider.statResolvedRead( filePath ) )
-//   // _.fileProvider.fileDelete( filePath );
-//   l.log( 'msg' );
-//   var got = _.fileProvider.fileRead( filePath );
-//   var expected = 'onWriteBegin.l : msg\n';
-//   test.identical( got, expected );
+  test.case = 'Logger -> LoggerToFile ( with onWriteBegin )';
+  if( _.fileProvider.statResolvedRead( filePath ) )
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ name : 'ltf', outputPath : filePath, onWriteBegin });
+  var l = new _.Logger({ name : 'l', output : loggerToFile });
+  l.log( 'msg' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = 'onWriteBegin.ltf : msg\n';
+  test.identical( got, expected );
 
-//   /* - */
+  /* */
 
-//   function onWriteBegin( o )
-//   {
-//     console.log( 'onWriteBegin' + this.name + ', OOO : ', o )
-//     o.input[ 0 ] = `onWriteBegin.${this.name} : ${o.input[ 0 ]}`;
-//     return o;
-//   }
+  test.case = 'Logger -> LoggerToFile ( with onWriteEnd )';
+  if( _.fileProvider.statResolvedRead( filePath ) )
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ name : 'ltf', outputPath : filePath, onWriteEnd });
+  var l = new _.Logger({ name : 'l', output : loggerToFile });
+  l.log( 'msg' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = 'msg\n';
+  test.identical( got, expected );
 
-//   function onWriteEnd( o ) { got.push( o.joinedInput ) }
+  /* */
 
-// }
+  test.case = 'LoggerToFile ( with onWriteBegin ) -> LoggerToFile ( with onWriteBegin )';
+  if( _.fileProvider.statResolvedRead( filePath ) )
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ name : 'ltf1', outputPath : filePath, onWriteBegin });
+  var loggerToFile2 = new wPrinterToFile({ name : 'ltf2', outputPath : filePath, output : loggerToFile, onWriteBegin });
+  loggerToFile2.log( 'msg' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = 'onWriteBegin.ltf2 : msg\nonWriteBegin.ltf1 : msg\n';
+  test.identical( got, expected );
+
+  /* */
+
+  test.case = 'Logger -> LoggerToFile ( with onTransformBegin )';
+  if( _.fileProvider.statResolvedRead( filePath ) )
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ name : 'ltf', outputPath : filePath, onTransformBegin });
+  var l = new _.Logger({ name : 'l', output : loggerToFile });
+  l.log( 'msg' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = 'msg\n';
+  test.identical( got, expected );
+
+  test.case = 'Logger -> LoggerToFile ( with onTransformEnd )';
+  if( _.fileProvider.statResolvedRead( filePath ) )
+  _.fileProvider.fileDelete( filePath );
+  var loggerToFile = new wPrinterToFile({ name : 'ltf', outputPath : filePath, onTransformEnd });
+  var l = new _.Logger({ name : 'l', output : loggerToFile });
+  l.log( 'msg' );
+  var got = _.fileProvider.fileRead( filePath );
+  var expected = 'msg\n';
+  test.identical( got, expected );
+
+  /* - */
+
+  function onWriteBegin( o )
+  {
+    o.input[ 0 ] = `onWriteBegin.${this.name} : ${o.input[ 0 ]}`;
+    return o;
+  }
+
+  function onWriteEnd( o )
+  {
+    o.input[ 0 ] = `onWriteEnd.${this.name} : ${o.input[ 0 ]}`;
+    return o;
+  }
+
+  function onTransformBegin( o )
+  {
+    o.input[ 0 ] = `onTransformBegin.${this.name} : ${o.input[ 0 ]}`;
+    return o;
+  }
+
+  function onTransformEnd( o )
+  {
+    o.input[ 0 ] = `onTransformEnd.${this.name} : ${o.input[ 0 ]}`;
+    return o;
+  }
+
+}
 
 //
 
@@ -250,7 +309,7 @@ var Proto =
     toFile,
     chaining,
     inputFrom,
-    // callbacks,
+    callbacks,
 
   },
 

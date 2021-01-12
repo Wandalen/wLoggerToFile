@@ -167,51 +167,83 @@ function init( o )
 
 //
 
-function _transformEnd( o )
+function _writeToChannelWithoutExclusion( channelName, args )
 {
   let self = this;
+  let data;
 
-  _.assert( arguments.length === 1, 'Expects single argument' );
+  _.assert( arguments.length === 2, 'Expects 2 arguments' );
 
-  // debugger
+  debugger
 
-  o = Parent.prototype._transformEnd.call( self, o );
+  let transformation = Parent.prototype._writeToChannelWithoutExclusion.call( self, channelName, args );
 
-  if( !o )
-  return;
+  if( transformation._outputForTerminal )
+  data = transformation._outputForTerminal[ 0 ];
+  else if( transformation._outputForPrinter )
+  data = transformation._outputForPrinter[ 0 ];
+  else
+  data = transformation.joinedInput;
 
-  _.assert( _.arrayIs( o._outputForTerminal ) || _.arrayIs( o._outputForPrinter ) );
-  _.assert
-  (
-    ( o._outputForTerminal && o._outputForTerminal.length === 1 )
-    || ( o._outputForPrinter && o._outputForPrinter.length === 1 )
-  );
-
-  let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ]; /* can be console or another Printer */
-  if( self.usingTags && _.mapKeys( self.attributes ).length )
-  {
-
-    let text = terminal;
-    terminal = Object.create( null );
-    terminal.text = text;
-
-    for( let t in self.attributes )
-    {
-      terminal[ t ] = self.attributes[ t ];
-    }
-
-  }
+  debugger;
 
   self.fileProvider.fileWrite
   ({
     filePath : self.outputPath,
-    data : terminal + '\n',
+    data : data + '\n',
     writeMode : 'append',
     sync : 1
   });
 
-  return o;
+  return transformation;
 }
+
+
+// function _transformEnd( o )
+// {
+//   let self = this;
+
+//   _.assert( arguments.length === 1, 'Expects single argument' );
+
+//   // debugger
+
+//   o = Parent.prototype._transformEnd.call( self, o );
+
+//   if( !o )
+//   return;
+
+//   _.assert( _.arrayIs( o._outputForTerminal ) || _.arrayIs( o._outputForPrinter ) );
+//   _.assert
+//   (
+//     ( o._outputForTerminal && o._outputForTerminal.length === 1 )
+//     || ( o._outputForPrinter && o._outputForPrinter.length === 1 )
+//   );
+
+//   let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ]; /* can be console or another Printer */
+//   if( self.usingTags && _.mapKeys( self.attributes ).length )
+//   {
+
+//     let text = terminal;
+//     terminal = Object.create( null );
+//     terminal.text = text;
+
+//     for( let t in self.attributes )
+//     {
+//       terminal[ t ] = self.attributes[ t ];
+//     }
+
+//   }
+
+//   self.fileProvider.fileWrite
+//   ({
+//     filePath : self.outputPath,
+//     data : terminal + '\n',
+//     writeMode : 'append',
+//     sync : 1
+//   });
+
+//   return o;
+// }
 
 //
 
@@ -264,7 +296,8 @@ let Proto =
 
   // write,
 
-  _transformEnd,
+  _writeToChannelWithoutExclusion,
+  // _transformEnd,
   // _writeToFile,
 
   // relations

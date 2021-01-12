@@ -21,10 +21,21 @@ l2.log( 'ee\nff' );
 console.log( 'something' );
 
 // console :
-// ?
+// aa
+// bb
+// something
 
 // output.log :
-// ?
+// ++aa
+// ++bb
+// ++cc
+// ++dd
+// ++something
+
 
 // output2.log :
-// ?
+// ---aa
+// ---bb
+// ---ee
+// ---ff
+// ---something

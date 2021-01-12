@@ -60,8 +60,8 @@ function toFile( test )
   test.case = 'case1';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var fl = new wPrinterToFile({ output : console, outputPath : filePath });
-  var l = new _.Logger({ output : console });
+  var fl = new wPrinterToFile({ outputPath : filePath });
+  var l = new _.Logger({ name : 'l' });
   l.outputTo( fl, { combining : 'rewrite' } );
   l.log( 123 )
   var got = _.fileProvider.fileRead( filePath );
@@ -70,8 +70,8 @@ function toFile( test )
 
   test.case = 'case2';
   _.fileProvider.fileDelete( filePath );
-  var fl = new wPrinterToFile({ outputPath : filePath, output : console });
-  var l = new _.Logger({ output : console });
+  var fl = new wPrinterToFile({ outputPath : filePath });
+  var l = new _.Logger({ name : 'l' });
   l.outputTo( fl, { combining : 'rewrite' } );
   l._dprefix = '*';
   l.up( 2 );
@@ -90,7 +90,7 @@ function chaining( test )
   test.case = 'case1: Logger->LoggerToFile';
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : console });
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
@@ -103,10 +103,10 @@ function chaining( test )
   var got = [];
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   var l = new _.Logger({ output : loggerToFile });
-  var l2 = new _.Logger({ output : console, onTransformEnd });
+  var l2 = new _.Logger({ onWriteEnd });
   loggerToFile.outputTo( l2, { combining : 'rewrite' } );
   l.log( 'msg' );
-  var expected = [ 'msg' ]
+  var expected = [ 'msg' ];
   test.identical( got, expected );
 
   test.case = 'case3: LoggerToFile->LoggerToFile';
@@ -116,7 +116,7 @@ function chaining( test )
   if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
   var loggerToFile = new wPrinterToFile({ outputPath : filePath });
-  var loggerToFile2 = new wPrinterToFile({ outputPath : path2, output : console });
+  var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
   loggerToFile.outputTo( loggerToFile2, { combining : 'rewrite' } );
   loggerToFile.log( 'msg' );
   var got = [ _.fileProvider.fileRead( filePath ), _.fileProvider.fileRead( path2 ) ];
@@ -127,7 +127,7 @@ function chaining( test )
   var path1 = filePath;
   if( _.fileProvider.statResolvedRead( path1 ) )
   _.fileProvider.fileDelete( path1 );
-  var loggerToFile = new wPrinterToFile({ outputPath : path1, output : console });
+  var loggerToFile = new wPrinterToFile({ outputPath : path1 });
   var l1 = new _.Logger({ output : loggerToFile });
   var l2 = new _.Logger({ output : loggerToFile });
   l1.log( '1' );
@@ -148,7 +148,7 @@ function chaining( test )
 
   /* - */
 
-  function onTransformEnd( o ) { got.push( o._outputForTerminal[ 0 ] ) };
+  function onWriteEnd( o ) { got.push( o.joinedInput ) };
 
 }
 
@@ -157,7 +157,7 @@ function chaining( test )
 function inputFrom( test )
 {
   var context = this;
-  let silencedLogger = new _.Logger({ name : 'silenced' });
+  // let silencedLogger = new _.Logger({ name : 'silenced' });
 
   test.case = 'input from console';
 
@@ -166,7 +166,7 @@ function inputFrom( test )
 
   if( _.fileProvider.statResolvedRead( filePath ) )
   _.fileProvider.fileDelete( filePath );
-  var loggerToFile = new wPrinterToFile({ outputPath : filePath, output : silencedLogger });
+  var loggerToFile = new wPrinterToFile({ outputPath : filePath });
   loggerToFile.inputFrom( console );
   console.log( 'something' )
   loggerToFile.inputUnchain( console );
@@ -181,8 +181,8 @@ function inputFrom( test )
   _.fileProvider.fileDelete( filePath );
   if( _.fileProvider.statResolvedRead( path2 ) )
   _.fileProvider.fileDelete( path2 );
-  var loggerToFile1 = new wPrinterToFile({ outputPath : filePath, output : silencedLogger });
-  var loggerToFile2 = new wPrinterToFile({ outputPath : path2, output : silencedLogger });
+  var loggerToFile1 = new wPrinterToFile({ outputPath : filePath });
+  var loggerToFile2 = new wPrinterToFile({ outputPath : path2 });
   loggerToFile1.inputFrom( console );
   loggerToFile2.inputFrom( console );
   console.log( 'something' )

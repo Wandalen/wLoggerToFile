@@ -167,47 +167,156 @@ function init( o )
 
 //
 
-function _transformEnd( o )
+/* Yevhen : call parent method, then write to file, onWriteBegin/End is called before writing */
+// function _writeToChannelWithoutExclusion( channelName, args )
+// {
+//   let self = this;
+//   let data;
+
+//   _.assert( arguments.length === 2, 'Expects 2 arguments' );
+
+//   debugger
+
+//   let transformation = Parent.prototype._writeToChannelWithoutExclusion.call( self, channelName, args );
+
+//   if( transformation._outputForTerminal ) /* output : console */
+//   data = transformation._outputForTerminal[ 0 ];
+//   else if( transformation._outputForPrinter ) /* output : Printer */
+//   data = transformation._outputForPrinter[ 0 ];
+//   else /* output : null */
+//   data = transformation.joinedInput;
+
+//   debugger;
+
+//   self.fileProvider.fileWrite
+//   ({
+//     filePath : self.outputPath,
+//     data : data + '\n',
+//     writeMode : 'append',
+//     sync : 1
+//   });
+
+//   return transformation;
+// }
+
+/* Yevhen : copy of the Parent method with writing to a file after onWriteBegin callback */
+function _writeToChannelWithoutExclusion( channelName, args )
 {
   let self = this;
+  let inputChainer = self[ chainerSymbol ];
 
-  _.assert( arguments.length === 1, 'Expects single argument' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
+  _.assert( _.strIs( channelName ) );
+  _.assert( _.longIs( args ) );
 
-  // debugger
-
-  o = Parent.prototype._transformEnd.call( self, o );
-
-  if( !o )
+  args = _.filter_( null, args, ( a ) => a );
+  if( !args.length )
   return;
 
-  _.assert( _.arrayIs( o._outputForTerminal ) );
-  _.assert( o._outputForTerminal.length === 1 );
-
-  let terminal = o._outputForTerminal[ 0 ];
-  if( self.usingTags && _.mapKeys( self.attributes ).length )
+  let transformation =
   {
-
-    let text = terminal;
-    terminal = Object.create( null );
-    terminal.text = text;
-
-    for( let t in self.attributes )
-    {
-      terminal[ t ] = self.attributes[ t ];
-    }
-
+    input : args,
+    channelName,
   }
+
+  self.transform.head.call( self, self.transform, [ transformation ] );
+  if( self.onWriteBegin )
+  self.onWriteBegin( transformation );
+  if( transformation.discarding )
+  return transformation;
 
   self.fileProvider.fileWrite
   ({
     filePath : self.outputPath,
-    data : terminal + '\n',
+    data : transformation.input[ 0 ] + '\n',
     writeMode : 'append',
     sync : 1
   });
 
-  return o;
+  self.outputs.forEach( ( chainLink ) =>
+  {
+    let outputChainer = chainLink.outputPrinter[ chainerSymbol ];
+
+    transformation.chainLink = chainLink;
+    let transformation2 = self.transform( transformation );
+    _.assert( transformation === transformation2 );
+
+    if( transformation.discarding )
+    return;
+
+    let outputData = transformation.output;
+    _.assert( _.longIs( outputData ) );
+
+    if( chainLink.originalOutput )
+    {
+      return outputChainer.originalWriteMap[ channelName ].apply( chainLink.outputPrinter, outputData );
+    }
+
+    if( chainLink.write && chainLink.write[ channelName ] )
+    {
+      chainLink.write[ channelName ].apply( chainLink.outputPrinter, outputData );
+    }
+    else
+    {
+      _.assert( _.routineIs( chainLink.outputPrinter[ channelName ] ) );
+      chainLink.outputPrinter[ channelName ].apply( chainLink.outputPrinter, outputData );
+      /* xxx : use _writeAct here */
+    }
+
+  });
+
+  if( self.onWriteEnd )
+  self.onWriteEnd( transformation );
+
+  return transformation;
 }
+
+
+// function _transformEnd( o )
+// {
+//   let self = this;
+
+//   _.assert( arguments.length === 1, 'Expects single argument' );
+
+//   // debugger
+
+//   o = Parent.prototype._transformEnd.call( self, o );
+
+//   if( !o )
+//   return;
+
+//   _.assert( _.arrayIs( o._outputForTerminal ) || _.arrayIs( o._outputForPrinter ) );
+//   _.assert
+//   (
+//     ( o._outputForTerminal && o._outputForTerminal.length === 1 )
+//     || ( o._outputForPrinter && o._outputForPrinter.length === 1 )
+//   );
+
+//   let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ]; /* can be console or another Printer */
+//   if( self.usingTags && _.mapKeys( self.attributes ).length )
+//   {
+
+//     let text = terminal;
+//     terminal = Object.create( null );
+//     terminal.text = text;
+
+//     for( let t in self.attributes )
+//     {
+//       terminal[ t ] = self.attributes[ t ];
+//     }
+
+//   }
+
+//   self.fileProvider.fileWrite
+//   ({
+//     filePath : self.outputPath,
+//     data : terminal + '\n',
+//     writeMode : 'append',
+//     sync : 1
+//   });
+
+//   return o;
+// }
 
 //
 
@@ -228,6 +337,12 @@ function _transformEnd( o )
 //   });
 
 // }
+
+// --
+// fields
+// --
+
+let chainerSymbol = Symbol.for( 'chainer' );
 
 // --
 // relations
@@ -260,7 +375,8 @@ let Proto =
 
   // write,
 
-  _transformEnd,
+  _writeToChannelWithoutExclusion,
+  // _transformEnd,
   // _writeToFile,
 
   // relations

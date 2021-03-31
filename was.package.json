@@ -11,7 +11,7 @@
   ],
   "license" : "MIT",
   "main" : "proto/wtools/amid/l1_logger/ToFile.s",
-  "files" : [ "proto/wtools/amid/l1_logger", "proto/wtools/Tools.s", "out" ],
+  "files" : [ "proto/wtools/amid/l1_logger", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" :
   {
@@ -23,7 +23,7 @@
     "url" : "https://github.com/Wandalen/wLoggerToFile/issues"
   },
   "dependencies" : { "wTools" : "", "wFiles" : "", "wLogger" : "" },
-  "devDependencies" : { "wTesting" : "", "wloggertofile" : "file:.", "eslint" : "7.1.0" },
+  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0" },
   "keywords" :
   [
     "wTools",

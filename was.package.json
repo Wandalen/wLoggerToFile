@@ -10,7 +10,7 @@
     { "name" : "Volodymyr M.", "email" : "volodymyr.migdal@gmail.com" }
   ],
   "license" : "MIT",
-  "main" : "/pro/module/wLoggerToFile/proto/node_modules/wloggertofile",
+  "main" : "proto/node_modules/wloggertofile",
   "files" : [ "proto/wtools/amid/l1_logger", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" :

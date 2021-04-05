@@ -83,8 +83,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wLoggerToFile/proto/wtools/amid/l1_logger/ToFile.s
-    - /pro/module/wLoggerToFile/proto/node_modules/wloggertofile
+    - proto/wtools/amid/l1_logger/ToFile.s
+    - proto/node_modules/wloggertofile
 reflector:
   reflect.proto:
     inherit: predefined.*

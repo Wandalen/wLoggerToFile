@@ -157,7 +157,7 @@ function chaining( test )
 
 function inputFrom( test )
 {
-  var context = this;
+  let context = this;
 
   test.case = 'input from console';
 

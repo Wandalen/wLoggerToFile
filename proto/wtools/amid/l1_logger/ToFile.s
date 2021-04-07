@@ -13,8 +13,8 @@
 if( typeof module !== 'undefined' )
 {
 
-  // let _ = require( '../../../../../node_modules/Tools' );
-  let _ = require( './../../Tools.s' );
+  // const _ = require( '../../../../../node_modules/Tools' );
+  const _ = require( './../../Tools.s' );
 
   _.include( 'wLogger' );
   _.include( 'wFiles' );

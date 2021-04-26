@@ -140,7 +140,7 @@ function init( o )
 //   _.assert( o.output.length === 1 );
 
 //   let terminal = o.output[ 0 ];
-//   if( self.usingTags && _.mapKeys( self.attributes ).length )
+//   if( self.usingTags && _.props.keys( self.attributes ).length )
 //   {
 
 //     let text = terminal;
@@ -212,7 +212,7 @@ function _transformationForm( channelName, args )
 //   );
 
 //   let terminal = o._outputForTerminal ? o._outputForTerminal[ 0 ] : o._outputForPrinter[ 0 ]; /* can be console or another Printer */
-//   if( self.usingTags && _.mapKeys( self.attributes ).length )
+//   if( self.usingTags && _.props.keys( self.attributes ).length )
 //   {
 
 //     let text = terminal;

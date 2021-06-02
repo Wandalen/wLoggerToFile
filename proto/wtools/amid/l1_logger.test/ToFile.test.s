@@ -16,7 +16,6 @@ if( typeof module !== 'undefined' )
 
 const _ = _global_.wTools;
 const Parent = wTools.Testing;
-const Proto = {};
 
 var filePath;
 
@@ -303,7 +302,6 @@ const Proto =
 
 //
 
-// _.props.extend( Self, Proto );
 const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );

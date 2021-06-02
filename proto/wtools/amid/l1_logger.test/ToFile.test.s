@@ -303,7 +303,7 @@ const Proto =
 
 //
 
-_.props.extend( Self, Proto );
+// _.props.extend( Self, Proto );
 const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );

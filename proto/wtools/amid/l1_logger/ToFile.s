@@ -242,7 +242,7 @@ function _transformationForm( channelName, args )
 // function _writeToFile()
 // {
 //   let self = this;
-//   _.assert( arguments.length );
+//   _.assert( arguments.length > 0 );
 //   _.assert( _.strIs( self.outputPath ),'outputPath is not defined for PrinterToFile' );
 
 //   let data = _.strConcat.apply( { },arguments ) + '\n';

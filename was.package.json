@@ -11,7 +11,7 @@
   ],
   "license" : "MIT",
   "main" : "proto/node_modules/wloggertofile",
-  "files" : [ "proto/wtools/amid/l1_logger", "out", "proto/node_modules" ],
+  "files" : [ "proto/wtools/amid/l1_logger", "out", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wloggertofile" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" :
   {

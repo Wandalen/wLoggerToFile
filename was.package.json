@@ -1,31 +1,49 @@
 {
-  "name" : "wloggertofile",
-  "version" : "0.4.277",
-  "engine" : "node >= 10.0.0",
-  "description" : "Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "contributors" :
-  [
-    { "name" : "Kostiantyn Wandalen", "email" : "wanalen@01.school" },
-    { "name" : "Volodymyr M.", "email" : "volodymyr.migdal@gmail.com" }
+  "name": "wloggertofile",
+  "version": "0.4.278",
+  "engine": "node >= 10.0.0",
+  "description": "Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "contributors": [
+    {
+      "name": "Kostiantyn Wandalen",
+      "email": "wanalen@01.school"
+    },
+    {
+      "name": "Volodymyr M.",
+      "email": "volodymyr.migdal@gmail.com"
+    }
   ],
-  "license" : "MIT",
-  "main" : "proto/node_modules/wloggertofile",
-  "files" : [ "proto/wtools/amid/l1_logger", "out", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wloggertofile" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
-  "repository" :
-  {
-    "type" : "git",
-    "url" : "https://github.com/Wandalen/wLoggerToFile.git"
+  "license": "MIT",
+  "main": "proto/node_modules/wloggertofile",
+  "files": [
+    "proto/wtools/amid/l1_logger",
+    "out",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wloggertofile"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen proto"
   },
-  "bugs" :
-  {
-    "url" : "https://github.com/Wandalen/wLoggerToFile/issues"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wLoggerToFile.git"
   },
-  "dependencies" : { "wTools" : "", "wFiles" : "", "wLogger" : "" },
-  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0" },
-  "keywords" :
-  [
+  "bugs": {
+    "url": "https://github.com/Wandalen/wLoggerToFile/issues"
+  },
+  "dependencies": {
+    "wTools": "",
+    "wLogger": "",
+    "wFiles": ""
+  },
+  "devDependencies": {
+    "wTesting": "",
+    "eslint": "7.1.0"
+  },
+  "keywords": [
     "wTools",
     "log to file",
     "save console output into file",

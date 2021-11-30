@@ -3,8 +3,8 @@ root:
   - wLoggerToFile.out
 consistency:
   ../will.yml: &ref_0
-    hash: bf04508ef1b240821312763ce4a65484
-    size: 7238
+    hash: d757f4ae429a0d2e6dcd83ca7f8d8b22
+    size: 7246
 module:
   wLoggerToFile.out:
     about:
@@ -1486,5 +1486,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: bf04508ef1b240821312763ce4a65484
-        size: 7238
+        hash: d757f4ae429a0d2e6dcd83ca7f8d8b22
+        size: 7246

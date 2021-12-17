@@ -1,6 +1,6 @@
 {
   "name": "wloggertofile",
-  "version": "0.4.305",
+  "version": "0.4.306",
   "engine": "node >= 10.0.0",
   "description": "Class to redirect logging to a file. Logger supports colorful formatting, verbosity control, chaining, combining several loggers/consoles into logging network. Logger provides 10 levels of verbosity [ 0,9 ] any value beyond clamped and multiple approaches to control verbosity. Logger may use console/stream/process/file as input or output. Unlike alternatives, colorful formatting is cross-platform and works similarly in the browser and on the server side. Use the module to make your diagnostic code working on any platform you work with and to been able to redirect your output to/from any destination/source.",
   "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
@@ -35,12 +35,12 @@
     "url": "https://github.com/Wandalen/wLoggerToFile/issues"
   },
   "dependencies": {
-    "wTools": "alpha",
-    "wLogger": "alpha",
-    "wFiles": "alpha"
+    "wTools": "delta",
+    "wLogger": "delta",
+    "wFiles": "delta"
   },
   "devDependencies": {
-    "wTesting": "alpha",
+    "wTesting": "delta",
     "eslint": "7.32.0"
   },
   "keywords": [
